@@ -1,0 +1,27 @@
+- Classes là những template: định nghĩa những ngôi nhà theo bản vẽ, còn khi thực thi (chạy) thì phải được khai
+báo và tồn tại trong bộ nhớ. => để sử dụng, cần create 1 instance
+- Classes contain instance và variable, instance là non static, variable là static
+- access modifier cho phép Java có tính đóng gói
+- PROTECTED sẽ cho phép truy cập ở bên trong cùng package và các class con kế thừa ở bất kỳ package nào
+. => protected = package + subclasse
+
+- signature of the method chỉ bao gồm  method name và order của các param, name
+ngoài ra, return type và param name, access modifier không thuộc method's signature
+
+- Từ khóa this sẽ hữu ích trong thường hợp các tham số truyền vào 1 method có cùng tên với biến của Object => dùng this để gọi biến của object
+-GC - Gabage collection sẽ thu dọn rác khi 1 block được chạy xong,
+những thành phần bên trong block không được ràng buộc / không trong phạm vi chạy của scope nữa sẽ bị thu dọn/xóa
+
+- Các biến static bên trong 1 class sẽ được khỏi tạo khi mà chương trình chạy, mà không cần đợi tới lúc Object được
+khởi tạo, để chúng có thể được sử dụng ở bất kỳ đâu thông qua Class Variable (tên class) còn các biến/hàm khác thì phải
+đợi khi class được khởi tạo (using new) thì chúng mới được load
+
+- bên trong 1 class, có thể có khối static block, khối block thường (non static) và constructor, thứ tự thực thi của chúng như sau:
+ Static - instance (block thường) - constructor
+  =====> Bên trong 1 class, những thành phần static luôn được khởi tạo và chạy trước, kể cả khi thứ tự ở dưới các dòng khác
+  . sau đó mới đến các Tp khác
+
+- Java sử dụng cơ chế call-by-value khi 1 method được gọi, hay gọi là, tạo 1 bản copy của các tham số mà method yêu cầu
++ nếu truyền biến  nguyên thủy vào cho method, thì method không thể thay đổi gias trị của biếnkiểu vì chỉ là 1 copy
++ nếu chuyển loại Object (rêference) thì method có thể thay đổi do 2 Object (object được copy để truyền vào và object gốc)
+cùng trỏ tới 1 object (vùng nhớ)

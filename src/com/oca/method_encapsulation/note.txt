@@ -1,0 +1,16 @@
+M- Ethod signature is method name and order of parameters, DO NOT contain return type.
+L- ý do dùng keyword static là vì: muốn các object có thể share nhau object đó mà không phải lặp lạio
+ việc tạo tượn đối  để sử dụng object static đó dụng
+ => tất cả Object đều có thể sử dụng biến static đó và không cần phải tạo đối tượngl (good practive) cũng có thể sử đối tượng static
+- Khi khai báo thuộc tính static X trong 1 oBject, thì X sẽ có vị trí ô nhớ và data không cùng thuộc với Object, mà nó ở khu vực riêng biệt
+
+-OVerload constructor là việc khai báo nhiều constructor với các param/order param khác nhau
+-modifier package : không cần chỉ rõ, nó là mặc định.
+-   protected: allow access inside of package và tất cả các class con củakees thừa => sẽ truy cập được
+// để có thể extend Class11 đang ở 1 package khác, Class11 phải là public, nếu không,  sẽ không thể extends,
+// 1 class/interface lúc khai báo chỉ có thể để là public hoặc package (không để gì, chỉ đơn giản là class NameXXX)
+// => nếu muón extends 1 class X ở 1 package khác thì X phải là dạng public, nếu không chỉ có thể extends X từ class
+// trong cùng package (do có modifier là package) đó.
+- access modifier cho phép Java có tính đóng gói
+
+- Việc gọi 1 method sẽ theo cơ chế CALL_BY_VAlues

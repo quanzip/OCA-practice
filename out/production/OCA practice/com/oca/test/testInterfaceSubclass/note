@@ -1,0 +1,3 @@
+- Chỉ có thể đặt class là static nếu đó là 1 subclass (class conv được khai báo bên trong của class bất kỳ)
+- Khi khởi tạo instance của 1 static class D là 1 class con của class X. ta chỉ cần X.D className = new X.D();
+Nhưng nếu D là 1 normal class (non static): Thì cần khởi tạo Class X trước, sau đó dựa vào X để khởi tạo D: X x= new X; X.D className = x.new D();

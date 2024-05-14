@@ -1,0 +1,60 @@
+Khai báo biến:
+final int c = 10; biến constant, được biên dịch gán gái trị ngay khi viết codetime: compile-time
+final int d; NOT initialied khi compile-
+d = 10; initialied at run-time
+=====> tất các biến được khai báo và khởi tạo không có final thì chúng sẽ được solve lúc chạy chương trình (run time)
+------ còn các biến có final thì chúng sẽ được solve at compile time,
+
+1 File can not have more than one public class, that public class is the file's name
+
+method:
+Method signature is method name and the order of parameters, DO NOT contain return type, param name, access modifier.  không tthể trùng signature, error
+1 class/interface chỉ có 2 loại modifier lúc khai báo là public và package, muốn extends ở mọi nơi thì để public, nếu để package thì chỉ được extends từ các thành phần trong cùng package
+Quy tắc này áp dụng giống như constructor/method/variable, nếu muốn sử dụng ở package nơi khác, cần để public
+
+-GC - Gabage collection sẽ thu dọn rác khi 1 block được chạy xong,
+những thành phần bên trong block không được ràng buộc / không trong phạm vi chạy của scope nữa sẽ bị thu dọn/xóa
+
+- khi class được khai báo với từ khóa new, các biến bên trong class được xóa và gán lại với giá trị mặc định
+Nếu chúng không được gán sẵn: int = 0, double/fload = 0.0, String, reference/INteger = null, boolean = false;
+
+- Các biến static bên trong 1 class sẽ được khỏi tạo khi mà chương trình chạy, mà không cần đợi tới lúc Object được
+khởi tạo, để chúng có thể được sử dụng ở bất kỳ đâu thông qua Class Variable (tên class) còn các biến/hàm khác thì phải
+đợi khi class được khởi tạo (using new) thì chúng mới được load
+
+- bên trong 1 class, có thể có khối static block, khối block thường (non static) và constructor, thứ tự thực thi của chúng như sau:
+ Static - instance (block t) - constructor: SIC
+ =====> Bên trong 1 class, những thành phần static luôn được khởi tạo và chạy trước, kể cả khi thứ tự ở dưới các dòng khác
+ . sau đó mới đến các Tp khác
+
+Trong ngữ cảnh static, chỉ có thể sử dụng các biến/phương thức static, không thể gọi, sử dụng biến, phương thức thường.
+ * Ngược lại, trong ngữ cảnh thường, có thể gọi , sử dụng mọi loại biến, phương thức: thường và static
+
+- Java sử dụng cơ chế call-by-value khi 1 method được gọi, hay gọi là, tạo 1 bản copy của các tham số mà method yêu cầu
++ nếu truyền biến  nguyên thủy vào cho method, thì method không thể thay đổi gias trị của biếnkiểu vì chỉ là 1 copy
++ nếu chuyển loại Object (rêference) thì method có thể thay đổi do 2 Object (object được copy để truyền vào và object gốc)
+cùng trỏ tới 1 object (vùng nhớ)
+
+-overloading != overriding
+Overloading: ghi de: co nhieu cac method cung ten trong cung 1 class, chung co thu tu Param khac nhau, kieu khac nhau
+Overrride: dinhn ghia lai cac method cua cha, chung co cxung ten, cung param
+ => de override,  + pt override o class con can co cung ten/param,
+    + kh dc throw more restrictive exception hon cha,
+    + kieu tra ve can phai giong hoac la kieu con cua kieu tra ve o phuong thuc goc
+
+Package
+Logical group of similar types of classes into a namespace are call packages.
+- wild card is using * when import package to class file.  ex: import java.util.*
+
+// =>>>> Đối với kiểu PRIMITIVE, không thể được sử dụng trong mọi ngữ cảnh: tính toán, In ra NẾU chưa được gán giá trị
+
+Các thuộc tính trong interface luôn là public & final -> không thể thay đổi giá trị của chúng
+Có thể sửa được gái trị của thuộc tính trong abstract class, chúng không phải final
+
+-Khi muốn gọi phương thức default của interface từ BÊN TRONG class con của chúng, thì cần gọi theo: [Tên interface].super.[methodName], dùng khi class con cũng có phương thức có signature giống với phương thức default của cha
+vd: từ bên trong 1 phương thức bất kỳ của class con đang kế thừa interface Animal, Animal.super.run(); và chỉ có thể
+gọi như vậy nếu Animal là cha trực tiêp, không thể gọi nếu Animal là ông nội hoặc cao hơn.
++Bên ngoài class con kế thừa interface Animal, khong thể gọi như này, mà phải khai báo instance của class con và gọi tới phương thức run() đó
+
+
+Top class (class ngoài cùng - trùng với fileName) không không được là static. Chỉ dùng static cho class con.

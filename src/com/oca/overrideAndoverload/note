@@ -1,0 +1,5 @@
+Để có thể override (kế thừa): thì  tại class con kế thừa class của cha:
+ _ Các return type/ method name, param, access modifier phải giống với cha.
+ - nếu ở class con muốn định nghĩa khác mà vẫn hợp lệ, chỉ có thể khác:
+  + return type: kiểu trả về phải là kiểu con của kiểu đang được định nghĩa tại class cha.
+  + acceess modifier phải mang tính mở hơn (less strict) access modifier tại class cha.

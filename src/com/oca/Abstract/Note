@@ -1,0 +1,10 @@
+Abstract class is class has 1 or more abstract methods.
+ - phương thức trong abstrac class có thể có: trừu trượng / static / method thường / private method, protected method
+ - Nếu đã khai báo abstract thì không được thể để method đó kiểu private hoặc final (không được kế thừa) => erorr
+    => đã có abstract thì không kèm final/private
+ - Phương thức trừu tượng có thể là public hoặc protected hoặc package (chỉ được kế thừa từ class trong cùng package)
+ - Kiểu access modifier của phương thức  kế thừa  ăn theo phương kieu o thức cha ở class cha
+
+ -  abstract class không thể dược khởi tạo, mà nó sinh ra để dược kế thừa.
+ - Class con extends abstract class phải implement all abstract class, trừ khi class con cũng là abstract
+ class thì nó không cần implement gì cả.
