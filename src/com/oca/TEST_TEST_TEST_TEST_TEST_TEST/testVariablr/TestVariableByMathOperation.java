@@ -1,4 +1,4 @@
-package com.oca.test.testVariablr;
+package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.testVariablr;
 
 /*
 * Data Type	Size	Description

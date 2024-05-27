@@ -1,4 +1,4 @@
-package com.oca.test.testInterfaceSubclass;
+package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.testInterfaceSubclass;
 /*
     we can only declare static class when that class is subclass (nested)
     With nested static class, we can instantiate it through the name of outter class

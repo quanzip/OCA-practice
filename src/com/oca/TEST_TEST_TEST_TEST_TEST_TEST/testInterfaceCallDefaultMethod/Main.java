@@ -1,4 +1,4 @@
-package com.oca.test.testInterfaceCallDefaultMethod;
+package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.testInterfaceCallDefaultMethod;
 
 public class Main {
     public static void main(String[] args) {

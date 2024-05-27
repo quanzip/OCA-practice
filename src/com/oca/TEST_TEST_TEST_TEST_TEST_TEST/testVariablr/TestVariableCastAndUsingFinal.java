@@ -1,4 +1,4 @@
-package com.oca.test.testVariablr;
+package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.testVariablr;
 
 /*
 * Gán BIến X  cho biến  Y  với X và Y đều nhỏ hơn INT (vế phải chỉ có X, không phải combination)
@@ -6,7 +6,7 @@ package com.oca.test.testVariablr;
 *  fix: Thêm cast về giá trị Y (vế trái) hoặc thêm final vào X lúc khai báo
 *  để compiler biết giá trị của X có hợp lệ hya không khi gán cho Y vì lúc đó Y được réolve luôn tại cômiler-time
 *
-* Nếu  vế phải: X > int; thì chỉ còn 1 cách fix đó là casting, không thể thêm final và vế phải X
+* Nếu  vế phải: X > int; thì chỉ còn 1 cách fix đó là casting về giá trị của Y, không thể thêm final và vế phải X
 * */
 
 public class TestVariableCastAndUsingFinal {
@@ -34,10 +34,10 @@ public class TestVariableCastAndUsingFinal {
         f = l;  // ok becasue l is less precision than f;
 
         d = f;
-        f = d; // invalid becasue result will be double, (fix: cast, can not use final for float f)
+     //   f = d; // invalid becasue result will be double, (fix: cast, can not use final for float f)
 
         d = l;
-        l = d; // invalid because d > l so result is double: d
+   //     l = d; // invalid because d > l so result is double: d
 
 
     }
