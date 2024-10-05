@@ -11,6 +11,14 @@ public class forLoop {
           //  System.out.println(a);
       //  for(int a = 1, short k = 10; a < 20; a++) {} // errror because initialization contain mixed types
 
+        for (int k = 0; k < -1; k++) {
+            System.out.println("K" + k);
+        }
+
+        for (int m = 0; m++<10 ;){
+            System.out.println("m " + m);
+        }
+
         System.out.println("ENHANCE FOR LOOP: easy for loop iteration");
         /*
         * use with array/collection (list/set)
@@ -25,11 +33,11 @@ public class forLoop {
         // LABLED LOOP
         OUTTER_LOOP:
         for(String c : strings) {
-           INNER_LOOP: for (String d: strings) {
-               System.out.println(c + "-" + d);
-            if (d.equals("asdsad")) break OUTTER_LOOP;
-            if (d.equals("quan")) break INNER_LOOP;
-           }
+            for (String d : strings) {
+                System.out.println(c + "-" + d);
+                if (d.equals("asdsad")) break OUTTER_LOOP;
+                if (d.equals("quan")) break;
+            }
         }
     }
 }

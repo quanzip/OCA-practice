@@ -16,10 +16,21 @@ char	2 bytes	Stores a single character/letter or ASCII values
 *
 * Kiểu nhỏ nhất khi cộng 2 kiểu khác nhau từ INT trở xuống sẽ là INT, vd: short + byte, char + int, short + int, char + byte
 * Khi cộng 2 kiểu lớn hơn int va không có dấu => Kết quả là kiểu lớn nhất, (long + <short | char | byte | int>) = long
+* if it is the combination of double/float, then result will be the more precision type
 * */
 
 
 public class TestVariableByMathOperation {
+
+    // call class variable when it is declared with static
+    static int classVariable = 5;
+
+    // call instance variable when declare without static
+    int instanceVariable = 100;
+
+    double d = 2.3;  // defult is double, so no need to put 'd' after value;
+    float f = 3.3f;
+
     public static void main(String[] args) {
         short s = 1;
         byte b = 2;

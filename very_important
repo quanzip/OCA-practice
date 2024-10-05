@@ -1,0 +1,45 @@
+ boolean a1 = false;
+        boolean b1= true;
+        boolean c1 = a1 && (b1 = false); //  because a1 = false; so right hand value (b1 = false) is not cared anynore
+        // so c get false as result
+        System.out.println(c1);  // false;
+        System.out.println("AND:" + a1 + "-" + b1); // false true
+
+
+// Trong biểu thức này, vẫn áp dụng theo quy tắc bên trên, đằng sau toán tử đôi (+=) luôn được đặt trong ngoặc
+        // và thực hiện trước. Tuy nhiên, biểu thức (l=3) sẽ gán giá trị cho l, nhưng tại chỗ gán đó l mới có giá trị mới,
+        // những chỗ truóc đó l xuất hiện thì vẫn mang giá trị cũ như ban đầu gán.
+        long l = 4;
+        l += 2 * l + (l = 3) * 3; // 4 + ((2 * 4) + 3 * 3) = 21;
+        System.out.println(l);
+
+logic operation (&&, ||)  ###  bitwise operation (& | ^):
+logic: break circuit when 1 side is nok while bitwise will run throughout business event 1 side is not ok
+// new knowledge: XOR ~ ^: require only one side to be true => true; if both is false or both is true => false;
+        // XOR là toán tử yêu cầu 1 trong 2 vế phải là true thì KQ trả ra sẽ là true, còn các Th khác sẽ là false;
+        // vd 1 true 1 false -> true, 2 true -> false, 2 false -> fasle;
+        boolean r = 1 > 2 ^ 2 > 1; //  false ^ true => true;
+        boolean r1 = 1 < 2 ^ 2 < 3; // true ^ true  => false;
+        boolean r2 = 1 > 2 ^ 2 > 3; // false ^ false => false;
+        System.out.println("XOR: " + r + "-" + r1  + "-" + r2);
+
+- Chỉ có thể đặt class là static nếu đó là 1 subclass (class conv được khai báo bên trong của class bất kỳ)
+- Khi khởi tạo instance của 1 static class D là 1 class con của class X. ta chỉ cần X.D className = new X.D();
+Nhưng nếu D là 1 normal class (non static): Thì cần khởi tạo Class X trước, sau đó dựa vào X để khởi tạo D: X x= new X; X.D className = x.new D();
+
+/**
+     * ok
+     */
+    public void EmptyClass() {
+        System.out.println("This method has same name with class but it is not a constructor and still valid");
+    }
+
+ /*
+        * Object luôn được khai báo và định giá trị tại run-time, kể cả khi chúng được khai báo final.
+        primative type sẽ được định giá trị tại compile time nếu chúng được khai báo final.
+        * */
+
+ for (int m = 0; m++<10 ;){   =>> m sẽ so sánh với 10 xong rồi mới cộng thêm 1
+
+ SIC, thứ tự chjay của các thành phần trong 1 class, 3 khối static, instance và constructor sẽ được tự động thực thi sau mỗi lần 1 object được khởi tạo
+ riêng khối static chỉ được chạy 1 lần ở lần khai báo đầu tiên của class.

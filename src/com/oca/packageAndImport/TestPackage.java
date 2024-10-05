@@ -5,6 +5,7 @@ import java.nio.file.Files; //  import phải chấm tới tên Class, không th
 // trường hợp sử dụng wildcard, vẫn là chấm tới tên class nhưng là dấu * => sử dụng tất cả các class trong package
 // import java.nio.file.*
 import java.nio.file.*;    // file là package,
+import java.nio.file.Paths; // uu tien specific import, not wild card
 
 public class TestPackage {
     public static void main(String[] args) {

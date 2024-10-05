@@ -49,8 +49,8 @@ public class StringImmutable {
         String hoa = "flower";
         String hoa1 = new String("flower").intern();
         System.out.println(hoa == hoa1); //  true, because using method intern() will ask jvm search in string pool
-        // the value, if exists, hoa1 will point to that declared value of other variable, BECAREFUL, if flower is declared
-        // before by a var like, String DD =  new String("flower") without intern() method, above result can be false
+        // the value, if exists, hoa1 will point to that declared value of other variable, BECAREFUL, if another var is declared
+        // before like, String DD =  new String("flower") without intern() method, above result can be false
         // when jvm search and get DD and assign hoa1 to it, now, hoa1 will be different to hoa and hoa == hoa1 return false
 
 

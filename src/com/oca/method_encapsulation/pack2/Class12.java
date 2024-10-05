@@ -8,11 +8,19 @@ import com.oca.method_encapsulation.pack1.Class11;
 // trong cùng package đó.
 public class Class12 extends Class11 {
     Class12 () {
+        // Nếu bên class cha Class11 có khai báo constructor, thì class con này cũng phải gọi tới constructor của cha
+        // Nếu bên cha không khai báo bất kỳ constructor, => sử dụng constr() không tham số JVM tự truyền vào, thì ở class
+        // con này constrc() của cha cũng tự động được gọi,
+        super(1);
         a = 1; // from super class
     }
 
     void setSuperProperties (int value) {
         a = value;
+
+        Class11 class11 = new Class11(a);
+//        class11.a = 100;   không dùng được do đây là instance được khai báo bên ngòai package của class 11 mà a
+        // là protected nên chỉ cho sd bên trong class con và trong cùng package
     }
 
     @Override

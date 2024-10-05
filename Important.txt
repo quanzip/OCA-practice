@@ -26,6 +26,7 @@ khởi tạo, để chúng có thể được sử dụng ở bất kỳ đâu t
  Static - instance (block t) - constructor: SIC
  =====> Bên trong 1 class, những thành phần static luôn được khởi tạo và chạy trước, kể cả khi thứ tự ở dưới các dòng khác
  . sau đó mới đến các Tp khác
+ Nhưng nếu 1 class có khối static đó được khởi tạo nhiều lần, thì khối static đó chỉ chạy ở lần đầu, những lần sau chỉ có khối instance được chạy lại tự động
 
 Trong ngữ cảnh static, chỉ có thể sử dụng các biến/phương thức static, không thể gọi, sử dụng biến, phương thức thường.
  * Ngược lại, trong ngữ cảnh thường, có thể gọi , sử dụng mọi loại biến, phương thức: thường và static

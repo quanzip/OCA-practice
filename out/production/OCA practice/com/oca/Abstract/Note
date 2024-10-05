@@ -6,5 +6,5 @@ Abstract class is class has 1 or more abstract methods.
  - Kiểu access modifier của phương thức  kế thừa  ăn theo phương kieu o thức cha ở class cha
 
  -  abstract class không thể dược khởi tạo, mà nó sinh ra để dược kế thừa.
- - Class con extends abstract class phải implement all abstract class, trừ khi class con cũng là abstract
+ - Class con extends abstract class phải implement all abstract method, trừ khi class con cũng là abstract
  class thì nó không cần implement gì cả.
