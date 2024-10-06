@@ -7,6 +7,5 @@ public class Dog extends Animal {
     // ở dòng đầu tiên, nếu cha không có , không bắt buộc
     public Dog(String name) {
         super("Atlis");
-//        super(name, "ok");
     }
 }
