@@ -12,4 +12,8 @@ public class Class11 {
     public void showInfo() {
         System.out.println("class11");
     }
+
+    protected void protectedMethod() {
+        System.out.println("super protected method");
+    }
 }

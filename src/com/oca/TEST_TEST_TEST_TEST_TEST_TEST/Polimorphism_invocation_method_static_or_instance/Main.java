@@ -4,7 +4,16 @@ import java.io.IOException;
 import java.util.Calendar;
 
 /*
- * khi kế thừa, gọi phương
+ * - khi @Override phương thức của cha ở class con, phương thức @Override ở class con phải có signature giống y hệt với cha
+ *  gồm: tên phương thức, thứ tự param và kiểu trả về, riêng kiểu trả về thì phải giống hoặc là kiểu con (is a) đối với kiểu của phương thức gốc
+ * , nếu khác signature, ta chỉ đang overload (ghi đè phương thức, không phải override)
+ * - Tiếp đó là giới hạn truy cập của @override ở class con không được hẹp hơn, ít nhất là bằng hoặc mở hơn so với phương thức gốc ở class cha.
+ * nếu phương thức cha là package private, thì class con cũng phải ở cùng package với cha mới có thể override
+ * - Checked exception phương thức @Override ở class con không thể throw nhiều và exception mở hơn so với phương thức gốc ở class cha.
+ * - Đối với unchecked exception, phương thức con có thể throw bao nhiêu tùy ý
+ *
+ * Đặc biệt Nếu class con đã trùng signature với cha, thì phải trùng nốt return type (return type không thuộc method signature)
+ * Nếu không trùng return type, JVM sẽ báo lỗi.
  * */
 
 
@@ -44,14 +53,14 @@ public class Main extends AbClass implements I1 {
 
     @Override
     public void showToday() {
-        System.out.println(Calendar.getInstance().getTime());
+        System.out.println("SUB class:i " + Calendar.getInstance().getTime());
     }
 
     @Override
     Main getAdd() throws Exception {
         String s = "asd";
         if (s.length() > 1) {
-            // không thể throw exception lớn hơn của cha, mà phải nhỏ hơn.
+            // không thể throw exception lớn hơn của cha, mà phải nhỏ hơn hoặc bằng.
             throw new IOException();
         }
         return null;

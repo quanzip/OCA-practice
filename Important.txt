@@ -50,6 +50,8 @@ Logical group of similar types of classes into a namespace are call packages.
 // =>>>> Đối với kiểu PRIMITIVE, không thể được sử dụng trong mọi ngữ cảnh: tính toán, In ra NẾU chưa được gán giá trị
 
 Các thuộc tính trong interface luôn là public & final -> không thể thay đổi giá trị của chúng
+Abstract sẽ implements interface, cÓ THỂ HOẶC KHÔNG CẦN IMPLEMENTS bất kỳ phương thức trừu tượng nào vì abs class mặc định chứa các pt trừu tượng => nó sẽ chứa thêm các pt tt của interface
+Abstract class không thể được khai báo, nếu cố tình khai báo, phải định nghĩa toàn bộ các pt tt (phương thức trừu tượng)
 Khi 2 interface đều có 1 phương thức default giống nhau. 1 class K kế thừa 2 interface đó (xẩy ra đa kế thừa, java k cho phép)
 => K phải override lại phương thức trên để khi gọi tới phương thức đó, jvm biết đang gọi từ trong K, Nếu muốn gọi của cha, thì ParentName.super.methodName().
 Có thể sửa được gái trị của thuộc tính trong abstract class, chúng không phải final
@@ -59,5 +61,6 @@ vd: từ bên trong 1 phương thức bất kỳ của class con đang kế th�
 gọi như vậy nếu Animal là cha trực tiêp, không thể gọi nếu Animal là ông nội hoặc cao hơn.
 +Bên ngoài class con kế thừa interface Animal, khong thể gọi như này, mà phải khai báo instance của class con và gọi tới phương thức run() đó
 
-
 Top class (class ngoài cùng - trùng với fileName) không không được là static. Chỉ dùng static cho class con.
+
+Khi X kế thừa Y chứa 1 thuộc tính protected, thuộc tính đó sẽ trở thành private bên trong X (chỉ được sử dụng bên trong X)
