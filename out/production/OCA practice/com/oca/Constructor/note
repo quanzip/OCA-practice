@@ -8,3 +8,5 @@ Mụch đích là để khởi tạo các giá trị ban đầu cho object/.
  và điền super () vào bên trong, để gọi phương thức khởi tạo của cha (Object class)
  - Nếu ta chỉ khởi tạo class và constructor trống, compiler sẽ điền thêm super() vào bên trong
  constructor trống đó. để khi class đó khởi tạo (tạo instance, thì phương thức khởi tạo của class cha sẽ được gọi - Object class)
+- JVm chỉ tự tạo constructor nếu không có bất kỳ constructỏtạ nào đc or tạo, nếu đã có dù là arg-constructor thì JVM cũng không tạo nữa
+  Với constructỏr đã tạo đó, JVM ktra xem đã có super() ở dòng đầu tiên chưa, nếu không có thì tự insert super().

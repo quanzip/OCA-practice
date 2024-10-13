@@ -4,6 +4,9 @@ package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.testInterfaceSubclass;
     With nested static class, we can instantiate it through the name of outter class
     With nested normal class, we have to use instance of outter class to instancetiate it
 * Becarefull when using nested normal class (not static class)
+
+ IN interface, keyword default can not stand by static for method. default is find of instance, static is belong to class
+ IN interface, keyword defualt can not stand by abstract, because default method need to implements but abstract is not.
 * */
 public class TestInteface {
     public static void main(String[] args) {

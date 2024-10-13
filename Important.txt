@@ -50,6 +50,8 @@ Logical group of similar types of classes into a namespace are call packages.
 // =>>>> Đối với kiểu PRIMITIVE, không thể được sử dụng trong mọi ngữ cảnh: tính toán, In ra NẾU chưa được gán giá trị
 
 Các thuộc tính trong interface luôn là public & final -> không thể thay đổi giá trị của chúng
+Khi 2 interface đều có 1 phương thức default giống nhau. 1 class K kế thừa 2 interface đó (xẩy ra đa kế thừa, java k cho phép)
+=> K phải override lại phương thức trên để khi gọi tới phương thức đó, jvm biết đang gọi từ trong K, Nếu muốn gọi của cha, thì ParentName.super.methodName().
 Có thể sửa được gái trị của thuộc tính trong abstract class, chúng không phải final
 
 -Khi muốn gọi phương thức default của interface từ BÊN TRONG class con của chúng, thì cần gọi theo: [Tên interface].super.[methodName], dùng khi class con cũng có phương thức có signature giống với phương thức default của cha
