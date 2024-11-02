@@ -5,50 +5,64 @@ d = 10; initialied at run-time
 =====> tất các biến được khai báo và khởi tạo không có final thì chúng sẽ được solve lúc chạy chương trình (run time)
 ------ còn các biến có final thì chúng sẽ được solve at compile time,
 
+---------------------------------- LOOP
+* while khác do-while ở chỗ:
+* while chỉ lặp nếu biểu thức điều kiện ok
+* Do-while sẽ thực thi ít nhất 1 lần, ở những lần lặp tiếp theo, sẽ phụ thuộc vào điều kiện ủa while trả ra, cần chú ý vị trí thay đổi điều kiện ex: do{}while(i++<10) thì i sẽ so sánh với 10 trước rồi mới cộng thêm 1
+== Khi dùng label, có thể dùng cho 1 lệnh bất kỳ ex (OK:sout("quan")), nhưng không thể dùng break/continue cho cho các lệnh này, vì chúng không đại diện cho 1 loop.
+điều kiện của if(false), do{}while(false) có thể để cứng là false, nhưng với while(false) và for(;false;) sẽ compile error.
+
+------- CLASS NAME
 1 File can not have more than one public class, that public class is the file's name
 
-method:
+-----------METHOD:
 Method signature is method name and the order of parameters, DO NOT contain return type, param name, access modifier.  không tthể trùng signature, error
 1 class/interface chỉ có 2 loại modifier lúc khai báo là public và package, muốn extends ở mọi nơi thì để public, nếu để package thì chỉ được extends từ các thành phần trong cùng package
 Quy tắc này áp dụng giống như constructor/method/variable, nếu muốn sử dụng ở package nơi khác, cần để public
 
+------------GABAGE COLLECTION
 -GC - Gabage collection sẽ thu dọn rác khi 1 block được chạy xong,
 những thành phần bên trong block không được ràng buộc / không trong phạm vi chạy của scope nữa sẽ bị thu dọn/xóa
 
+------------ CLASS INITIALIZATION
 - khi class được khai báo với từ khóa new, các biến bên trong class được xóa và gán lại với giá trị mặc định
 Nếu chúng không được gán sẵn: int = 0, double/fload = 0.0, String, reference/INteger = null, boolean = false;
 
+------------ STATIC
 - Các biến static bên trong 1 class sẽ được khỏi tạo khi mà chương trình chạy, mà không cần đợi tới lúc Object được
 khởi tạo, để chúng có thể được sử dụng ở bất kỳ đâu thông qua Class Variable (tên class) còn các biến/hàm khác thì phải
 đợi khi class được khởi tạo (using new) thì chúng mới được load
+Trong ngữ cảnh static, chỉ có thể sử dụng các biến/phương thức static, không thể gọi, sử dụng biến, phương thức thường.
+ * Ngược lại, trong ngữ cảnh thường, có thể gọi , sử dụng mọi loại biến, phương thức: thường và static
 
+------------ INI ORDER
 - bên trong 1 class, có thể có khối static block, khối block thường (non static) và constructor, thứ tự thực thi của chúng như sau:
  Static - instance (block t) - constructor: SIC
  =====> Bên trong 1 class, những thành phần static luôn được khởi tạo và chạy trước, kể cả khi thứ tự ở dưới các dòng khác
  . sau đó mới đến các Tp khác
  Nhưng nếu 1 class có khối static đó được khởi tạo nhiều lần, thì khối static đó chỉ chạy ở lần đầu, những lần sau chỉ có khối instance được chạy lại tự động
 
-Trong ngữ cảnh static, chỉ có thể sử dụng các biến/phương thức static, không thể gọi, sử dụng biến, phương thức thường.
- * Ngược lại, trong ngữ cảnh thường, có thể gọi , sử dụng mọi loại biến, phương thức: thường và static
-
+------------ METHOD CALL
 - Java sử dụng cơ chế call-by-value khi 1 method được gọi, hay gọi là, tạo 1 bản copy của các tham số mà method yêu cầu
 + nếu truyền biến  nguyên thủy vào cho method, thì method không thể thay đổi gias trị của biếnkiểu vì chỉ là 1 copy
 + nếu chuyển loại Object (rêference) thì method có thể thay đổi do 2 Object (object được copy để truyền vào và object gốc)
 cùng trỏ tới 1 object (vùng nhớ)
 
--overloading != overriding
+--------------OVERLOADING != OVERRIDING
 Overloading: ghi de: co nhieu cac method cung ten trong cung 1 class, chung co thu tu Param khac nhau, kieu khac nhau
 Overrride: dinhn ghia lai cac method cua cha, chung co cxung ten, cung param
  => de override,  + pt override o class con can co cung ten/param,
     + kh dc throw more restrictive exception hon cha,
     + kieu tra ve can phai giong hoac la kieu con cua kieu tra ve o phuong thuc goc
 
-Package
+----------------PACKAGE
 Logical group of similar types of classes into a namespace are call packages.
 - wild card is using * when import package to class file.  ex: import java.util.*
 
 // =>>>> Đối với kiểu PRIMITIVE, không thể được sử dụng trong mọi ngữ cảnh: tính toán, In ra NẾU chưa được gán giá trị
 
+
+-------------- INTERFACE
 Các thuộc tính trong interface luôn là public & final -> không thể thay đổi giá trị của chúng
 Abstract sẽ implements interface, cÓ THỂ HOẶC KHÔNG CẦN IMPLEMENTS bất kỳ phương thức trừu tượng nào vì abs class mặc định chứa các pt trừu tượng => nó sẽ chứa thêm các pt tt của interface
 Abstract class không thể được khai báo, nếu cố tình khai báo, phải định nghĩa toàn bộ các pt tt (phương thức trừu tượng)
@@ -63,4 +77,32 @@ gọi như vậy nếu Animal là cha trực tiêp, không thể gọi nếu Ani
 
 Top class (class ngoài cùng - trùng với fileName) không không được là static. Chỉ dùng static cho class con.
 
+-------------- INHERIT
 Khi X kế thừa Y chứa 1 thuộc tính protected, thuộc tính đó sẽ trở thành private bên trong X (chỉ được sử dụng bên trong X)
+
+--------------- LOOP
+* while khác do-while ở chỗ:
+* while chỉ lặp nếu biểu thức điều kiện ok
+* Do-while sẽ thực thi ít nhất 1 lần, ở những lần lặp tiếp theo, sẽ phụ thuộc vào điều kiện ủa while trả ra, cần chú ý vị trí thay đổi điều kiện ex: do{}while(i++<10) thì i sẽ so sánh với 10 trước rồi mới cộng thêm 1
+== Khi dùng label, có thể dùng cho 1 lệnh bất kỳ ex (OK:sout("quan")), nhưng không thể dùng break/continue cho cho các lệnh này, vì chúng không đại diện cho 1 loop.
+điều kiện của if(false), do{}while(false) có thể để cứng là false, nhưng với while(false) và for(;false;) sẽ compile error..  for(;;) -> ok
+*  Nếu đưa vào while 1 nếu condition bởi tất cả là các constant (using final) ẽx while (f > 0 || g < 0) f & g đều được khai báo dùng final
+*  thì while sẽ định giá trị luôn (resolve value at compile time due to using final) => nếu là false, thì sẽ báo lỗi biên dịch luôn, tương tự với for
+*  Nhưng nếu có 1 trong các tham số trong while không phải final, thì compile không lỗi do JVm sẽ chỉ định gía trị được ở run time
+*
+* - nếu dùng label bởi các lệnh break, continue,... thì {} của lable phải là cha của nơi dùng lệnh, như ví dụ bên dưới,
+ public static void main(String[] args) {
+        ZIP: for(;getCond();) {
+             final boolean f = false;
+              boolean g = false;
+            while (!f || g) {   // ok because g is not final, but if g is final then compile eror due to valuate at run time
+                if (Math.random() > 0.34) break ZIP;
+            }
+            System.out.println("quan");
+        }
+        int c  = 0;
+        while(c > 0) {
+           //  if (c == 0) break ZIP;  // error because {} of lable ZIP are not parent of this block, so ZIP is not found
+            System.out.println("asd");
+        }
+    }

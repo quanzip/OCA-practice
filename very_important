@@ -43,3 +43,9 @@ Nhưng nếu D là 1 normal class (non static): Thì cần khởi tạo Class X 
 
  SIC, thứ tự chjay của các thành phần trong 1 class, 3 khối static, instance và constructor sẽ được tự động thực thi sau mỗi lần 1 object được khởi tạo
  riêng khối static chỉ được chạy 1 lần ở lần khai báo đầu tiên của class.
+
+* while khác do-while ở chỗ:
+* while chỉ lặp nếu biểu thức điều kiện ok
+* Do-while sẽ thực thi ít nhất 1 lần, ở những lần lặp tiếp theo, sẽ phụ thuộc vào điều kiện ủa while trả ra, cần chú ý vị trí thay đổi điều kiện ex: do{}while(i++<10) thì i sẽ so sánh với 10 trước rồi mới cộng thêm 1
+== Khi dùng label, có thể dùng cho 1 lệnh bất kỳ ex (OK:sout("quan")), nhưng không thể dùng break/continue cho cho các lệnh này, vì chúng không đại diện cho 1 loop.
+điều kiện của if(false), do{}while(false) có thể để cứng là false, nhưng với while(false) và for(;false;) sẽ compile error.  for(;;) -> ok
