@@ -28,11 +28,11 @@ public class WhileVsDoWhilw {
         }
     }
 
-    private static boolean check(int g) {
-        for (;;) { // ok
-            System.out.println("ok");
-            return true;
-        }
-//        return false;
+    private final static boolean check(int g) {
+//        for (;;) { // ok
+//            System.out.println("ok");
+//            return true;
+//        }
+        return false;
     }
 }

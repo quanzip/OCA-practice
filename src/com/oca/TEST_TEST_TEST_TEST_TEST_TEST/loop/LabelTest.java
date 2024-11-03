@@ -1,7 +1,7 @@
 package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.loop;
 
 /*
-*  Nếu đưa vào while 1 nếu condition bởi tất cả là các constant (using final) ẽx while (f > 0 || g < 0) f & g đều được khai báo dùng final
+*  Nếu đưa vào while 1  condition bởi tất cả là các constant (using final) ẽx while (f > 0 || g < 0) f & g đều được khai báo dùng final
 *  thì while sẽ định giá trị luôn (resolve value at compile time due to using final) => nếu là false, thì sẽ báo lỗi biên dịch luôn, tương tự với for
 *  Nhưng nếu có 1 trong các tham số trong while không phải final, thì compile không lỗi do JVm sẽ chỉ định gía trị được ở run time
 *

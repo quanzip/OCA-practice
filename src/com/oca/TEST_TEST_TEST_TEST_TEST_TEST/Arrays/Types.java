@@ -5,7 +5,8 @@ import java.util.Random;
 
 /*
 * Với kiểu mảng 2 chiều, có thể khai báo int []a[] = new int[X bắt buộc][Y không bắt buộc];  nếu không có cả x và Y, thì phải định nghĩa rõ phần tử nào có trong mảng luôn {1,2,4,56}
-* trước khi dùng var ở đâu phải initial trước, nếu không sẽ compile error
+* trước khi dùng var ở đâu phải initial trước, nếu không sẽ compile error đối với function var, còn đối với class vả, thì không cần vì class var có thể được assign tỏng các function sau
+* còn function var là cục bộ, sẽ không thể dùng bên dưới nếu bên trên chưa được khai báo.`
 * */
 public class Types {
     public static void main(String[] args) {

@@ -106,3 +106,10 @@ Khi X kế thừa Y chứa 1 thuộc tính protected, thuộc tính đó sẽ tr
             System.out.println("asd");
         }
     }
+
+     int a1[] = new int[]{1};
+            Object o2 = a1;
+          //  Object o3[] = a1;  // eror vì mảng 1 chiều của primitive thực chất chỉ là 1 đối tượng, không thể gán cho 1 mảng đối tượngthể
+            //  , chỉ có mảng 2 chiều mới có thể gán cho mảng 1 chiều object vì nó thực chất là mảng 1 chiều.
+    //        Object[] o4 = new int[2]; // error vì new int[2] chỉ là 1 đối tượng, không thể gán cho 1 mảng đối tượng.
+            ((int[])(o2))[0] = 10;
