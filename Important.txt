@@ -14,6 +14,14 @@ d = 10; initialied at run-time
 
 ------- CLASS NAME
 1 File can not have more than one public class, that public class is the file's name
+class Animal1 {
+    static String name;
+     int numLeg;
+
+    public Animal1() {
+        this(name, numLeg);    // errror vì numleg không phải static => trong this([args]) thì các args phải là static var/methods.
+    }
+
 
 -----------METHOD:
 Method signature is method name and the order of parameters, DO NOT contain return type, param name, access modifier.  không tthể trùng signature, error
@@ -79,6 +87,7 @@ Top class (class ngoài cùng - trùng với fileName) không không được l�
 
 -------------- INHERIT
 Khi X kế thừa Y chứa 1 thuộc tính protected, thuộc tính đó sẽ trở thành private bên trong X (chỉ được sử dụng bên trong X)
+// Khi kế thừa. chỉ cần gọi 1 trong các phương thức khởi tạo của cha, nếu cha khai báo cụ thể. Nếu cha không khai cụ thể cons nào, thì không cần, JVm tự làm cho
 
 --------------- LOOP
 * while khác do-while ở chỗ:
@@ -113,3 +122,21 @@ Khi X kế thừa Y chứa 1 thuộc tính protected, thuộc tính đó sẽ tr
             //  , chỉ có mảng 2 chiều mới có thể gán cho mảng 1 chiều object vì nó thực chất là mảng 1 chiều.
     //        Object[] o4 = new int[2]; // error vì new int[2] chỉ là 1 đối tượng, không thể gán cho 1 mảng đối tượng.
             ((int[])(o2))[0] = 10;
+
+=-------------- enum
+Enum
+Enum có thể sử dụng == or equals() để so sánh
+Không thể kế thừa bất kỳ thứ gì(interface, class, abstract class), có thể có constructor,  fields, METHODS.
+Constructor sẽ ngầm định là private, không được chuyển sang public | protected. do vậy chỉ có thẻ gọi constructor của nó bên trong chính nó. Cũng do đó không thể kế thừa enum, không thể khai báo enum với từ khóa new.
+Các giá trị của enum đưuọc đánh thứ tự, bắt đầu từ 0 ^, Enum là type kế thừa java enum. KHÔNG PHẢI KIỂU PRIVATIVE nên không thể so sánh giá trị với int ie if(enumVar == 4) // error
+
+Vào lần sử dụng đầu tiên của bất kỳ enum reference nào. tất cả các thành phần đều sẽ được khởi tạo theo trong lần đó, kể từ đó về sau, nếu các enum khác được gọi, JVm sẽ chỉ cần return các enum đã được khởi tạo đó => JVm chỉ khởi tạo các enum duy nhất 1 lần,
+Trong enum có các method, các method là chung cho tất cả các reference, được sử dụng bởi các instance.  Nếu bất kỳ thành viên của enum muốn có riêng thêm hoặc overide lại method chung, thì khai báo trong body riêng của chúng. Nhớ phải có ; ở cuối {};
+Instance của enum có thể gọi các method chúng. không thể gọi các method riêng bởi vì khi khai báo là EnumType name = EnumType.Xvalue nên instance này chỉ gọi được các method chung.
+Nếu enum khai báo phương thức trừu tượng (có từ khác abstract) thì tất cả các thành viên phải overide lại method này
+
+----- Stack - heap - gc
+ System.gc(); // suggest JVm to reclaim memory
+Kind kind = new Kind("data");
+// in stack  // data of kind is saved in heap
+kiểu primitive và reference của object sẽ được lưu ở stack (high speed), data của object sẽ được lưu ở heap

@@ -1,0 +1,28 @@
+package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.QUESTION;
+
+import java.util.Enumeration;
+
+public class Constructor_With_args {
+    public static void main(String[] args) {
+        String name = "Quan";
+        System.out.println(name);
+    }
+}
+
+class Animal1 {
+    static String name;
+     int numLeg;
+
+    public Animal1() {
+        this(name, numLeg);    // errror vì numleg không phải static => trong this([args]) thì các args phải là static var/methods.
+    }
+
+    public void showName(){
+        System.out.println(name);
+    }
+
+    public Animal1(String name, int numLeg) {
+        this.name = name;
+        this.numLeg = numLeg;
+    }
+}

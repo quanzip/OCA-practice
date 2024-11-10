@@ -1,0 +1,10 @@
+Enum
+Enum có thể sử dụng == or equals() để so sánh
+Không thể kế thừa bất kỳ thứ gì(interface, class, abstract class), có thể có constructor,  fields, METHODS.
+Constructor sẽ ngầm định là private, không được chuyển sang public | protected. do vậy chỉ có thẻ gọi constructor của nó bên trong chính nó. Cũng do đó không thể kế thừa enum, không thể khai báo enum với từ khóa new.
+Các giá trị của enum đưuọc đánh thứ tự, bắt đầu từ 0 ^, Enum là type kế thừa java enum. KHÔNG PHẢI KIỂU PRIVATIVE nên không thể so sánh giá trị với int ie if(enumVar == 4) // error
+
+Vào lần sử dụng đầu tiên của bất kỳ enum reference nào. tất cả các thành phần đều sẽ được khởi tạo theo trong lần đó, kể từ đó về sau, nếu các enum khác được gọi, JVm sẽ chỉ cần return các enum đã được khởi tạo đó => JVm chỉ khởi tạo các enum duy nhất 1 lần,
+Trong enum có các method, các method là chung cho tất cả các reference, được sử dụng bởi các instance.  Nếu bất kỳ thành viên của enum muốn có riêng thêm hoặc overide lại method chung, thì khai báo trong body riêng của chúng. Nhớ phải có ; ở cuối {};
+Instance của enum có thể gọi các method chúng. không thể gọi các method riêng bởi vì khi khai báo là EnumType name = EnumType.Xvalue nên instance này chỉ gọi được các method chung.
+Nếu enum khai báo phương thức trừu tượng (có từ khác abstract) thì tất cả các thành viên phải overide lại method này

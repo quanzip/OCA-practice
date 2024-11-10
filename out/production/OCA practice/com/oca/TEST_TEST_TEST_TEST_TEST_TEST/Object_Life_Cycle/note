@@ -1,0 +1,12 @@
+System.gc(); để suggest JVm dọn dẹp bộ nhớ, lấy lại bộ nhớ
+
+/*
+* kiểu primitive và reference của object sẽ được lưu ở stack (high speed)
+* */
+public class simple {
+    public static void main(String[] args) {
+        System.gc(); // suggest JVm to reclaim memory
+        Kind kind = new Kind("data");
+       // in stack  // data of kind is saved in heap(low speed)
+    }
+}
