@@ -1,3 +1,6 @@
+ interface sẽ extends interface
+ abstract class sẽ implements interface (không được extends, và không cần implements abstract methods.)
+
  class Animal1 {
      static String name;
       int numLeg;
@@ -5,7 +8,7 @@
      public Animal1() {
          this(name, numLeg);    // errror vì numleg không phải static => trong this([args]) thì các args phải là static var/methods.
      }
-
+    => Muốn sử dụng THIS(var, var1) với các biến, thì các biến đó phải là static
 
  boolean a1 = false;
         boolean b1= true;

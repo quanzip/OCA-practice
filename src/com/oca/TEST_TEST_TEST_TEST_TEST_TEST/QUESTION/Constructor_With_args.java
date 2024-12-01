@@ -11,10 +11,12 @@ public class Constructor_With_args {
 
 class Animal1 {
     static String name;
-     int numLeg;
+    static int numLeg;
+    boolean isOk;
 
     public Animal1() {
         this(name, numLeg);    // errror vì numleg không phải static => trong this([args]) thì các args phải là static var/methods.
+        isOk = true;
     }
 
     public void showName(){
