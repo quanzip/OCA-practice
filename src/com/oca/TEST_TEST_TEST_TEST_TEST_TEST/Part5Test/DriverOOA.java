@@ -35,7 +35,7 @@ public class DriverOOA {
 
     /*
     * instanceof & isAsignableFrom
-    * A instanceof B sẽ trả true nếu A là con kế thừa B hoặc B là ô nội, cụ, kỵ, còn không thì sẽ trả false
+    * A instanceof B sẽ trả true nếu A là B hoặc A là con kế thừa B hoặc B là ô nội, cụ, kỵ, còn không thì sẽ trả false
     *  A isAssignableFrom B nếu B chính là class được khai báo (Object type) trước đó, ngoài ra trả fall với bất kỳ kiểu nào khác,
     *  vd Object t = new Int(1), t.getClassIsAssignableFrom(Int.class) => true nhưng  t.getClassIsAssignableFrom(Object.class) => false
     * */

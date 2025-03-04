@@ -43,6 +43,9 @@ public class OCATest {
         System.out.println(b);
         if (c > 0 | (b = true)) {}
         System.out.println(b);
+        if (c > 1 | c %2 == 1) {
+            System.out.println("true");
+        }
     }
 
 

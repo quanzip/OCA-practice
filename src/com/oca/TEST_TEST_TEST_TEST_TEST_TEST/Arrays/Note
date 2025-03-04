@@ -1,6 +1,8 @@
+
+mảng luôn được lưu trữ tại heap, kể cả mảng của các kiểu nguyên thủy hay kiểu object
 - khai báo biến/mảng ở trong phạm vi class thì có thể không cần gán giá trị vẫn có thể figng được
 ex class X {int a;  int b = a} => ok  => chúng là class variable
 - Nhưng nếu khai báo biến/ mảng trong function, block, constructor => lỗi, thì như trên sẽ báo lỗi vì a chưa được initial đã dùng
 => Chúng là function variable, cần phải gán giá trị trước khi sử dụng,
 
-- Mảng 2 chiều thực chất là mảng 1 chiều, mỗi phần tương ứng với mỗi dòng, việc gán mảng 2 chiều X cho 1 mảng object[]o o, thì mảng o 1 chiều chứa các phần tử là các hàng của mảng 2 chiều
+- Mảng 2 chiều primitive thực chất là mảng 1 chiều, mỗi phần tương ứng với mỗi dòng, việc gán mảng 2 chiều X cho 1 mảng object[]o o, thì mảng o 1 chiều chứa các phần tử là các hàng của mảng 2 chiều

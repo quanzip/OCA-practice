@@ -1,7 +1,16 @@
 package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.Arrays;
 
 import java.util.concurrent.LinkedTransferQueue;
-
+/*
+* mảng luôn được lưu trữ tại heap, kể cả mảng của các kiểu nguyên thủy hay kiểu object
+* Mảng 1 chiều chỉ được gán lại cho mảng 1 chiều, không thể gán cho mảng 2 chiều (primitives & Object)
+  Khi đếm các đối tượng đã được tạo ra là bao nhiêu, phải đếm tất cả các dối tượng có , bất kể đã gán null hay chưa.
+  * Khi dùng phương thức valueof(X) thì X sẽ được kiểm tra trong cache có chưa, có rồi thì dùng, chưa có thì thêm vào cache thay cho phương thức new Integer(X).
+  vd Integer X[] = {1,2,3,4}
+  *  Integer Y[] = {1,2,3,4}
+  *  thì có 6 đối tượng được tạo ra, có các phần tử trong Y đều đã được cahe và dùng lại
+  *   => X[0] == Y[0]   =>  true.
+* * * */
 public class AssignObjectToArray {
     int  b;
     int c = b;  // ok

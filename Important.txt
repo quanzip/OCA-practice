@@ -1,3 +1,5 @@
+Package statement luôn đứng đầu, sau mới đến import statement
+
 Khai báo biến:
 final int c = 10; biến constant, được biên dịch gán gái trị ngay khi viết codetime: compile-time
 final int d; NOT initialied khi compile-
@@ -116,12 +118,33 @@ Khi X kế thừa Y chứa 1 thuộc tính protected, thuộc tính đó sẽ tr
         }
     }
 
+-------------------- mảng
+- mảng luôn được lưu trữ tại heap, kể cả mảng của các kiểu nguyên thủy hay kiểu object
      int a1[] = new int[]{1};
             Object o2 = a1;
           //  Object o3[] = a1;  // eror vì mảng 1 chiều của primitive thực chất chỉ là 1 đối tượng, không thể gán cho 1 mảng đối tượngthể
             //  , chỉ có mảng 2 chiều mới có thể gán cho mảng 1 chiều object vì nó thực chất là mảng 1 chiều.
     //        Object[] o4 = new int[2]; // error vì new int[2] chỉ là 1 đối tượng, không thể gán cho 1 mảng đối tượng.
             ((int[])(o2))[0] = 10;
+ Khi đếm các đối tượng đã được tạo ra là bao nhiêu, phải đếm tất cả các dối tượng có , bất kể đã gán null hay chưa.
+  * Khi khai báo Integer x[]= {1,2,3} hoặc dùng phương thức valueof(X) thì X sẽ được kiểm tra trong cache có chưa, có rồi thì dùng, chưa có thì thêm vào cache thay cho phương thức new Integer(X).
+  vd Integer X[] = {1,2,3,4}
+  *  Integer Y[] = {1,2,3,4}
+  *  thì có 6 đối tượng được tạo ra, có các phần tử trong Y đều đã được cahe và dùng lại
+  *   => X[0] == Y[0]   =>  true.
+
+----------------switch
+ // Các giá trị trong case phải trong khoảng giá trị cho phép của kiểu truyền vào trong switch - phải được xác định ngay lúc compile(khi viết mã)
+        // default case có thể đặt tại bát cứ đâu.
+        // Nếu không sử dụng break ở mỗi case, thì khi switch chạy, case X có giá trị thỏa mãn, thì tất cả các logic
+        // từ X trở xuống, bao gồm logic của các case khác cũng được xử lý mặc dù giá trị của case là không khớp
+        // và bao gồm cả logic của DEFAULT nếu default để phía dưới case đó. Sẽ chạy đến khi nào gặp
+        //
+        // ex
+        // Trong ví dụ dưới. các case không có break, case: 1 không thỏa mãn, logic của nó không được chạy
+        // và case 2: sẽ thỏa mãn, thì logic của nó và logic của case 0 sẽ được thực thi do case 2 không có break
+        // DEFAULT không được thực thi do default được đặt trên đầu, nếu nó dược đặt dưới case 2, nó cũng sẽ được thực thibreak cho đến khi gặp b
+
 
 =-------------- enum
 Enum
@@ -140,3 +163,12 @@ Nếu enum khai báo phương thức trừu tượng (có từ khác abstract) t
 Kind kind = new Kind("data");
 // in stack  // data of kind is saved in heap
 kiểu primitive và reference của object sẽ được lưu ở stack (high speed), data của object sẽ được lưu ở heap
+
+---------  Exception
+Trong catch (AException | BException e)  chỉ có thể dùng như này nếu AException và BException đều là CON của CHECKED exception đang được chủ động throw ra vd: IOException,... khi mở file
+Try-with-resource: luôn có 1 finally {} ngầm định được chạy trước các catch{} hay finally {} tường minh, không bắt buộc có catch/finally tường minh vì try-with-resource đã luôn có finally {} ngầm định
+Thứ tự close các resource trong try là từ dưới lên trên, khai báo sau sẽ được close trước.
+nếu Nếu trong try-with-resource throw Ex, thì nó sẽ trở thành main exception và được xu lý bằng Ex của catch(Exception mainEx) {} còn các exception mà bị văng ra từ finally {} ngầm định sẽ được nén vào trong 1 array, lấy ra từ mainException.getSuppressed();
+- 1 khối try catch, các khối catch sẽ được khai ex tùy ý nếu chúng là runtimeEx theo chiều tăng dần phạm vi (con -> cha)
+Chỉ được khai catch là checked EX nếu phương thức trong try{} văng ra ex đó.
+Phương thức con kế thừa cha có ex thì con sẽ ok nếu: không khai ex, khai ex cùng cây với cha và <= Ex cha, khai bất kỳ runtime ex

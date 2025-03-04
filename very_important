@@ -1,3 +1,15 @@
+Package statement luôn đứng đầu, sau mới đến import statement
+Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
+Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
+
+/*
+* Khi khai báo String với new String("ok")  thì sẽ có 2 object được khởi tạo
+* 1. new String("ok") là khởi tạo 1 object nên sẽ được lưu ở trong heap.
+* 2. với mệnh đề: "All literal string are interned" => Tất cả các chuỗi string đều được lưu ỏ string pool, khi lưu, check xem cso chưa, chưa có mới lưu mới. Do vậy "ok" cũng sẽ được check và tạo mới ở trong pool
+    với String s = new String("ok);  và String s1 = "ok"   thì sẽ có 2 Object được tạo, đối tượng s đầu tiên tạo 2 Object này, 1 ở heap, 1 ở pool, đối tượng s1 tạo thì kiểm tra pool đã có "ok" rồi nên lấy ra dùng luôn
+    * Nhưng 2 object trên là khác nhau (trỏ vào 2 vùng nhớ khác nhau) nên khi so sánh thì == SẼ TRẢ FALSE, còn dùng EQUALS SẼ TRẢ TRUE;
+* * */
+
  interface sẽ extends interface
  abstract class sẽ implements interface (không được extends, và không cần implements abstract methods.)
 
@@ -62,10 +74,29 @@ Nhưng nếu D là 1 normal class (non static): Thì cần khởi tạo Class X 
 == Khi dùng label, có thể dùng cho 1 lệnh bất kỳ ex (OK:sout("quan")), nhưng không thể dùng break/continue cho cho các lệnh này, vì chúng không đại diện cho 1 loop.
 điều kiện của if(false), do{}while(false) có thể để cứng là false, nhưng với while(false) và for(;false;) sẽ compile error.  for(;;) -> ok, nếu điều kiện xác định từ non-final var, thì vẫn sẽ ok vì JVM sẽ valuate at runtime
 
+----------------switch
+ // Các giá trị trong case phải trong khoảng giá trị cho phép của kiểu truyền vào trong switch - phải được xác định ngay lúc compile(khi viết mã)
+        // default case có thể đặt tại bát cứ đâu.
+        // Nếu không sử dụng break ở mỗi case, thì khi switch chạy, case X có giá trị thỏa mãn, thì tất cả các logic
+        // từ X trở xuống, bao gồm logic của các case khác cũng được xử lý mặc dù giá trị của case là không khớp
+        // và bao gồm cả logic của DEFAULT nếu default để phía dưới case đó. Sẽ chạy đến khi nào gặp
+        //
+        // ex
+        // Trong ví dụ dưới. các case không có break, case: 1 không thỏa mãn, logic của nó không được chạy
+        // và case 2: sẽ thỏa mãn, thì logic của nó và logic của case 0 sẽ được thực thi do case 2 không có break
+        // DEFAULT không được thực thi do default được đặt trên đầu, nếu nó dược đặt dưới case 2, nó cũng sẽ được thực thibreak cho đến khi gặp b
+
+-------- mảng
+mảng luôn được lưu trữ tại heap, kể cả mảng của các kiểu nguyên thủy hay kiểu object
 Mảng 1 chiều kiểu primative thực chất là 1 đối tượng nên chỉ có thể gán cho đối tượng object. Object c = new short[]{1} // ok
 Mảng 1 chiều kiểu primative vì vậy không thể gán cho mảng object[]
 Mảng 2 chiều kiểu primative là mảng 1 chiều, mỗi phần tử là 1 hàng nên có thể gán cho mảng 1 chiều object[]
-
+ +++ Khi đếm các đối tượng đã được tạo ra là bao nhiêu, phải đếm tất cả các dối tượng có , bất kể đã gán null hay chưa.
+  * Khi khai báo Integer x[]= {1,2,3} hoặc dùng phương thức valueof(X) thì X sẽ được kiểm tra trong cache có chưa, có rồi thì dùng, chưa có thì thêm vào cache thay cho phương thức new Integer(X).
+  vd Integer X[] = {1,2,3,4}
+  *  Integer Y[] = {1,2,3,4}
+  *  thì có 6 đối tượng được tạo ra, có các phần tử trong Y đều đã được cahe và dùng lại
+  *   => X[0] == Y[0]   =>  true.
 với kiểu string và các kiểu custom khác thì mảng 1 chiều chính là mảng object, Object []o = new String[]{};  //ok
 
 ----- Stack - heap - gc
@@ -85,3 +116,29 @@ Vào lần sử dụng đầu tiên của bất kỳ enum reference nào. tất 
 Trong enum có các method, các method là chung cho tất cả các reference, được sử dụng bởi các instance.  Nếu bất kỳ thành viên của enum muốn có riêng thêm hoặc overide lại method chung, thì khai báo trong body riêng của chúng. Nhớ phải có ; ở cuối {};
 Instance của enum có thể gọi các method chúng. không thể gọi các method riêng bởi vì khi khai báo là EnumType name = EnumType.Xvalue nên instance này chỉ gọi được các method chung.
 Nếu enum khai báo phương thức trừu tượng (có từ khác abstract) thì tất cả các thành viên phải overide lại method này
+
+--------------- Exception
+/*
+* Try-with-resource luôn có 1 finally block ngầm định java sẽ chạy để đóng các tài nguyên trong try
+* Nếu ta khai báo tường minh 1 finally block, java vẫn sẽ chạy finally block ngầm định trước tiên, sau mới đến finally block của ta khai báo.
+* Try-with-resource vẫn có quy tắc như try bình thường, vẫn yêu cầu phải có catch hoặc finally hoặc cả 2. Nhưng vì luôn có 1 finally ngầm định nên ta không cần catch/finally nữa với try-with-resource. Chỉ cần duy nhất try(){} mà thôi
+* Các tài nguyên khai báo sau của try-with-resource sẽ được đóng trước, theo thứ tự từ phải sang trái. chỉ những tài nguyên khai báo trong try-with-resource () mới có thể tự động được close
+* Tài nguyên trong try-with-resource () và body của nó {} là local, không thể sử dụng tại catch hoặc finally tự định nghĩa,
+nếu Nếu trong try-with-resource throw Ex, thì nó sẽ trở thành main exception và được xu lý bằng Ex của catch(Exception mainEx) {} còn các exception mà bị văng ra từ finally {} ngầm định sẽ được nén vào trong 1 array, lấy ra từ mainException.getSuppressed();
+* */
+Khi kế thừa phương thức có signature with exception
+// throws FileNotFoundException   -> ok, nhỏ hơn cha.
+        // throw RuntimeException ->  ok vì là RuntimeException
+        //
+        // throw Exception() -> not ok -> checked exception lớn hơn cha.
+        // throw SqlException -> not ok -> checked Exception không cùng cây với cha.
+        /*
+        * COn chỉ có thể throw Exception giống hoặc là con nhỏ hơn cha,
+        * - hoặc không throw gì
+        * - hoặc throw bất kỳ runtime exception
+        *
+        * Con không được throw Checked exception khác loại mà không cùng cây kế thừa với cha
+        * Con Không được throw ex cùng cây kế thừa với cha nhưng lớn hơn của cha.
+        * */
+- 1 khối try catch, các khối catch sẽ được khai ex tùy ý nếu chúng là runtimeEx theo chiều tăng dần phạm vi (con -> cha)
+Chỉ được khai catch là checked EX nếu phương thức trong try{} văng ra ex đó.
