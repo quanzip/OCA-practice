@@ -24,7 +24,6 @@ class Animal1 {
         this(name, numLeg);    // errror vì numleg không phải static => trong this([args]) thì các args phải là static var/methods.
     }
 
-
 -----------METHOD:
 Method signature is method name and the order of parameters, DO NOT contain return type, param name, access modifier.  không tthể trùng signature, error
 1 class/interface chỉ có 2 loại modifier lúc khai báo là public và package, muốn extends ở mọi nơi thì để public, nếu để package thì chỉ được extends từ các thành phần trong cùng package
@@ -62,8 +61,8 @@ cùng trỏ tới 1 object (vùng nhớ)
 Overloading: ghi de: co nhieu cac method cung ten trong cung 1 class, chung co thu tu Param khac nhau, kieu khac nhau
 Overrride: dinhn ghia lai cac method cua cha, chung co cxung ten, cung param
  => de override,  + pt override o class con can co cung ten/param,
-    + kh dc throw more restrictive exception hon cha,
-    + kieu tra ve can phai giong hoac la kieu con cua kieu tra ve o phuong thuc goc
+    + kh dc throw khac kieu cha, cung k dc throw kieu lon hon cha, (cos the ko throw gi, hoac throw runtimeEx, hoac throw kieu <= cha)
+    + kieu tra ve can phai giong hoac la nho hon kieu cua cha
 
 ----------------PACKAGE
 Logical group of similar types of classes into a namespace are call packages.
@@ -76,7 +75,8 @@ Logical group of similar types of classes into a namespace are call packages.
 Các thuộc tính trong interface luôn là public & final -> không thể thay đổi giá trị của chúng
 Abstract sẽ implements interface, cÓ THỂ HOẶC KHÔNG CẦN IMPLEMENTS bất kỳ phương thức trừu tượng nào vì abs class mặc định chứa các pt trừu tượng => nó sẽ chứa thêm các pt tt của interface
 Abstract class không thể được khai báo, nếu cố tình khai báo, phải định nghĩa toàn bộ các pt tt (phương thức trừu tượng)
-Khi 2 interface đều có 1 phương thức default giống nhau. 1 class K kế thừa 2 interface đó (xẩy ra đa kế thừa, java k cho phép)
+Khi 2 interface đều có 1 phương thức default giống nhau. 1 class K kế thừa 2 interface đó (xẩy ra đa kế thừa, java k cho phép),
+=> K se phai ke thua lai (dinh nghia lai) PT default nay cua cha / hoac 1 trong 2 cha phai doi method signature
 => K phải override lại phương thức trên để khi gọi tới phương thức đó, jvm biết đang gọi từ trong K, Nếu muốn gọi của cha, thì ParentName.super.methodName().
 Có thể sửa được gái trị của thuộc tính trong abstract class, chúng không phải final
 
@@ -95,7 +95,7 @@ Khi X kế thừa Y chứa 1 thuộc tính protected, thuộc tính đó sẽ tr
 * while khác do-while ở chỗ:
 * while chỉ lặp nếu biểu thức điều kiện ok
 * Do-while sẽ thực thi ít nhất 1 lần, ở những lần lặp tiếp theo, sẽ phụ thuộc vào điều kiện ủa while trả ra, cần chú ý vị trí thay đổi điều kiện ex: do{}while(i++<10) thì i sẽ so sánh với 10 trước rồi mới cộng thêm 1
-== Khi dùng label, có thể dùng cho 1 lệnh bất kỳ ex (OK:sout("quan")), nhưng không thể dùng break/continue cho cho các lệnh này, vì chúng không đại diện cho 1 loop.
+== Khi dùng label, có thể dùng cho 1 STATEMENT ex (OK:sout("quan")), nhưng không thể dùng break/continue cho cho các lệnh này, vì chúng không đại diện cho 1 loop.
 điều kiện của if(false), do{}while(false) có thể để cứng là false, nhưng với while(false) và for(;false;) sẽ compile error..  for(;;) -> ok
 *  Nếu đưa vào while 1 nếu condition bởi tất cả là các constant (using final) ẽx while (f > 0 || g < 0) f & g đều được khai báo dùng final
 *  thì while sẽ định giá trị luôn (resolve value at compile time due to using final) => nếu là false, thì sẽ báo lỗi biên dịch luôn, tương tự với for

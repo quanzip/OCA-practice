@@ -30,6 +30,17 @@ public class DriverOOA {
         System.out.println("t.getClass().isAssignableFrom(Object.class): " + (t.getClass().isAssignableFrom(Object.class)));
         System.out.println("t.getClass().isAssignableFrom(Number.class): " + (t.getClass().isAssignableFrom(Number.class)));
 
+       // short, int byte, char
+        final short s = 154;
+        short s1 = s + 853;
+
+        ok:System.out.println("quan");
+
+        int mm = 10;
+        ok1: for(int i = 0; i > 10; i++) {
+//            if (i % 2 ==0) continue ok1;
+//            System.out.println("ss");
+        }
 
     }
 

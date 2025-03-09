@@ -38,7 +38,7 @@ Chỉ class con mới có thể là static class. và nó cũng có thể là pr
         System.out.println(l);
 
 logic operation (&&, ||)  ###  bitwise operation (& | ^):
-logic: break circuit when 1 side is nok while bitwise will run throughout business event 1 side is not ok
+logic: break circuit when 1 side is nok while bitwise will run throughout business even 1 side is not ok
 // new knowledge: XOR ~ ^: require only one side to be true => true; if both is false or both is true => false;
         // XOR là toán tử yêu cầu 1 trong 2 vế phải là true thì KQ trả ra sẽ là true, còn các Th khác sẽ là false;
         // vd 1 true 1 false -> true, 2 true -> false, 2 false -> fasle;
