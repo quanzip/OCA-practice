@@ -12,6 +12,12 @@ Chỉ class con mới có thể là static class. và nó cũng có thể là pr
 
  interface sẽ extends interface
  abstract class sẽ implements interface (không được extends, và không cần implements abstract methods.)
+Abstract class/ class normal khai static method, static method có thể được gọi bằng instanceic --
+Interface khai static method, thì static method này chỉ có thể được gọi bằng refernce (InterfaceName.methodName)
+=> A extends ABSTRACT CLASS implement INTERFACE thì A là thể hiện (instance của abstract class), và A chỉ là triển khai của Interface chứ A không phải là thể hiện (instance) của interface
+=> Nếu abs class C và interface D cùng có 1 phương thức static S, thì khi khai íntance A a = new A,  a.S là sẽ gọi phương thức của abs class C,
+chứ ko gọi S của inteface D bởi vì class có thể gọi phương thức static bằng instace của nó,   nhưng interface thì không
+
 
  class Animal1 {
      static String name;
@@ -142,3 +148,69 @@ Khi kế thừa phương thức có signature with exception
         * */
 - 1 khối try catch, các khối catch sẽ được khai ex tùy ý nếu chúng là runtimeEx theo chiều tăng dần phạm vi (con -> cha)
 Chỉ được khai catch là checked EX nếu phương thức trong try{} văng ra ex đó.
+
+Kế Thừa:
+Nếu A kế thừa B, B định nghĩa cons tường minh CÓ THAM SỐ,  thì A cũng phải override (gọi) phương thức này trong cons của A
+=> Tất cả class kế thừa B đều phải khai cons và gọi tới cons có tham số của B
+=> Nếu B không khai bất kỳ cons nào thì các con có thể khai hoặc không.
+=> Nếu B khai Cons không tham số thì các con có thể khai hoặc không
+=> Nếu B khai Cons có tham số thì các con bắt buộc phải khai cons và gọi cons của B (chỉ cần 1 trong các cons của B, nếu B có nhiều)
+
+Interface
+Nếu khai báo phương thức static S và method Default D
+- Static method của interface chỉ có thể gọi qua reference (interfaceName.staticMethod), không thể gọi qua interface instance, còn static của class và abs class có thể được gọi qua reference hoặc instance.
+- Default method có thể gọi qua instace, không thể gọi qua instace,  class triển khai insterface phải khai báo instace để gọi các default method này
+=> Static method và default method của interface có quy tắc truy cập ngược nhau.
+=> Khi A kế thừa abs class B và interface C, B và C đều khai phương thức static S,
+a.S là gọi S của B vì static method S của Class và abs class mới có thể gọi qua instance,  Static method của interface C chỉ cso thể được gọi qua referenceName
+
+
+d instanceof C
+Nếu C không phải là cha hay ông nội (tính cả extends hay kế thừa) thì compile sẽ lỗi luôn, không biên dịch.
+
+RETURNTYPE => double, vì long < double của d nên  giá trị chung trả ra sẽ là kiểu double
+public RETURNTYPE methodX( byte by){
+    double d = 10.0;
+    return (long) by/d*3;
+}
+// Khi cast (long) thì chỉ là cast cho vế đầu , tương đương với ((long) by/d* 3)
+
+
+FINAL ARGUMENT
+ public static final String getInfo(final Go s, final Go d ) {
+        return "";
+ }
+ // final ở tên hàm chỉ có ý nghĩa rằng trong phạm vi hàm đó, các tham số đó sẽ không thể gán lại giá trị
+ // khi gọi hàm đó, các tham số không cần phải là final
+
+ package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.test1603;
+
+ public class Sentance9 {
+
+     private final double r;
+     // khi đã khai thuộc tính final thì phải gán giá trị ngay hoặc
+     // phải gán trong constructor hoặc trong static block
+     double rr;
+     static {
+ //        r = 1;  only if r la static
+     }
+
+     Sentance9() {
+         r = 1;
+     }
+
+     public void setShort(short ddd) {  // short
+         rr = ddd;
+     }
+     public void setRR(long ddd) {   // long
+         rr = ddd;
+     }
+
+     public static void main(String[] args) {
+         Sentance9 e = new Sentance9();
+         e.setRR(90);  // ok auto cast  to Long, vi 90 se tu hieu la Int, ma int < long la tham so cua ham => OK
+
+         e.setShort((short)90); // error vi 90 la int, co the vuot qua range kieu short cua ham
+         // nen phai cast ve short
+     }
+ }
