@@ -230,3 +230,23 @@ public class Sentance9 {
         // nen phai cast ve short
     }
 }
+
+
+public static void changeString(String s, StringBuilder sb, ObjectR r, int[] is) {
+        s = null;
+        sb.append("quan");
+        sb = null;
+//        sb = sb.append("s");
+        r.name = "Asd";
+        r = null;
+
+        is[0] = 1;
+        is[2] = 3;
+        is = null;
+}
+// phuong thuc tren co casc tham so duoc gasn bang null o cuoi, chung deu ko the anh huong den object, sau khi goi phuong thuc tren
+// casc object goc van co gia tri nhu binh thuong, ko bi null di da bi gan null,  casc data dc thay doi trong method deu dc ghi lai
+
+// java dung co che callByValue de goi ham: truyen vao 1 ban copy X cua cac object goc G de thuc thi tren do, neu thay doi thuoc tinh thi ca 2 se bi thay doi
+// , nhung neu ben trong ham ma object bi gan sang 1 doi tuong khac K, thi X se tro sang 1 vung nho khac, G van la G, luc nay rieng biet han vs X, khong bi gan sang K
+// truoc khi gan sang K, neu X thay doi gia tri thuoc tinh thi ca X va G deu dc thay doi nhu nhau do van con tro chung vao 1 vung nho data
