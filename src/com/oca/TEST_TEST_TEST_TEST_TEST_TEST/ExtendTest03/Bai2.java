@@ -35,5 +35,11 @@ public class Bai2 {
         String s3 = "hss";
         String rr = "hs" + "s";
         System.out.println(s3 == rr); // true
+
+        System.out.println("Compare String 4 --------------");
+        String fg= null;
+        String fgg = " sa";
+        String gff = fg + fgg;
+        System.out.println(gff);
     }
 }
