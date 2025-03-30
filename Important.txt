@@ -1,5 +1,9 @@
 Package statement luôn đứng đầu, sau mới đến import statement
 
+a class can not be sub-classed có nghĩa là 1 class không thể bị kế thừa
+
+thuộc tính private thì chỉ có thể sd ở bên trong class chứ không phải bên trong file
+
 Khai báo biến:
 final int c = 10; biến constant, được biên dịch gán gái trị ngay khi viết codetime: compile-time
 final int d; NOT initialied khi compile-
@@ -41,6 +45,7 @@ Quy tắc này áp dụng giống như constructor/method/variable, nếu muốn
 ------------GABAGE COLLECTION
 -GC - Gabage collection sẽ thu dọn rác khi 1 block được chạy xong,
 những thành phần bên trong block không được ràng buộc / không trong phạm vi chạy của scope nữa sẽ bị thu dọn/xóa
+Nếu 1 biến được khai báo sau đó sử dụng, sau đó được gán lại về null, thì tại dòng null đó, biến đó là đủ điều kiện để GC thu dọn
 
 ------------ CLASS INITIALIZATION
 - khi class được khai báo với từ khóa new, các biến bên trong class được xóa và gán lại với giá trị mặc định
@@ -95,6 +100,22 @@ gọi như vậy nếu Animal là cha trực tiêp, không thể gọi nếu Ani
 +Bên ngoài class con kế thừa interface Animal, khong thể gọi như này, mà phải khai báo instance của class con và gọi tới phương thức run() đó
 
 Top class (class ngoài cùng - trùng với fileName) không không được là static. Chỉ dùng static cho class con.
+
+interface T1{
+}
+interface T2{
+   int VALUE = 10;
+   void m1();
+}
+
+interface T3 extends T1, T2{
+   public void m1();
+   public void m1(int x);
+}
+
+T2 và T3 cùng có 1 phương thức m1() => ok, code này chạy fined
+
+
 
 -------------- INHERIT
 Khi X kế thừa Y chứa 1 thuộc tính protected, thuộc tính đó sẽ trở thành private bên trong X (chỉ được sử dụng bên trong X)
@@ -199,6 +220,8 @@ a.S là gọi S của B vì static method S của Class và abs class mới có 
 
 d instanceof C
 Nếu C không phải là cha hay ông nội (tính cả extends hay kế thừa) thì compile sẽ lỗi luôn, không biên dịch.
+Tương tự với ép kiểu, nếu không trong cây kế thừa sẽ lỗi luôn compile, còn trong cây rồi thì có thể compile nhưng runtime vẫn có thể lỗi do không thể casst
+
 
 RETURNTYPE => double, vì long < double của d nên  giá trị chung trả ra sẽ là kiểu double
 public RETURNTYPE methodX( byte by){
@@ -319,3 +342,60 @@ public class BB extends A{
         System.out.print(i + " ");
     }
 }
+
+--------------- super is the closest father, not grandFather
+class A {
+    int i = 1;
+}
+class B extends A{
+    int i =10;
+}
+class C extends B {
+    public void show() {
+        System.out.println(super.i);   //  I of B
+    }
+}
+
+
+------------------- Static var, static block
+/*
+* Nếu A kế thùa B, B có biến static, A có thể sử dụng biến này trữ tiếp thông qua tên của A: A.staticVarName, hoặc sử
+* dụng thông qua instance của A,   a.staticVarName
+* */
+public class Bai8 {
+    public static void main(String[] args) {
+//        Sub sub = new Sub();
+        System.out.println(Sub.ID);  // via reference ok
+//        System.out.println(sub.ID);  // via instance ok
+    }
+}
+class Super {
+    static { System.out.print("In Qbank");};
+    {
+        System.out.println("Instance block");
+    }
+    static String ID = " ID"; }   // nếu như khai báo final, Giá trị này sẽ được gán ở lúc Compile time và Jmv biết nó sẽ không bị thay đổi
+   // Cho nên ở hàm main khi truy cập vào ID này, JVM biết giá trị nó rồi
+// sẽ không dẫn đến sự Load của class Super trong bộ nhớ => block static sẽ không được chạy
+   // Nhưng nếu var ID này không để final, thì ở hàm main lúc gọi đến field static này, thì nó mới được gán giá trị  = "ID"
+// => Class Super sẽ được load vào bộ nhớ => block static sẽ được chạy vào lúc này
+    /* result:
+    * Class Super sẽ được JVM load vào bộ nhớ (đồng thời chạy các static block) khi xảy ra bất kỳ điều gì sau đây:
+    *  1.Class được khởi tạo với từ khóa new
+    *  2. Bất kỳ Phương thức static của class được gọi lần đầu
+    *  3. Bất kỳ biến static nào được gán giá trị lần đầu => biến đó không phải final
+    *  4. bất kỳ biến static nào được GỌI lần đầu và biến đó không phải final (non-final thì lúc này gọi JVM mới load giá trị => load class, còn nếu biến static này là final thì JVM biết rõ giá trị nó ròi, có được gọi thì class cũng không được loadd)
+    *  5. bất kỳ biến static nào điuọc gọi lần đầu  thông qua class/interface con
+    *  6. bất kỳ method thường/static nào được gọi thông qua method reflection của  class Class hoặc package java.lang.reflect
+    * */
+
+class Sub extends Super{
+    static final int t = 10;
+    static { System.out.print("In Sub");  // AAA   static block chỉ được thực thi khi mà 1 trong các sự kiện bên trên xuất hiện }
+        {
+            System.out.println("Super instance block");
+            // khối instance block chỉ được thực thi khi class được khai báo với keywỏrd NEWnhớ
+            // , còn khối static sẽ được thực thi khi mà class được load vào trong bộ
+        }
+}
+

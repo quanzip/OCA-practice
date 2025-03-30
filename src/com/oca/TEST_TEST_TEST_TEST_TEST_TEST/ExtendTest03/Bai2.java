@@ -1,6 +1,9 @@
 package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.ExtendTest03;
 
 public class Bai2 {
+
+    // static can be declared here, not in any functions
+
     public static void main(String[] args) {
         String s = null;
         s += "quan";   // ok
@@ -41,5 +44,8 @@ public class Bai2 {
         String fgg = " sa";
         String gff = fg + fgg;
         System.out.println(gff);
+
+        final  int ggsa = 4;
+        // static String ggsad = "";
     }
 }

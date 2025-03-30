@@ -119,6 +119,7 @@ với kiểu string và các kiểu custom khác thì mảng 1 chiều chính l�
 Kind kind = new Kind("data");
 // in stack  // data of kind is saved in heap
 kiểu primitive và reference của object sẽ được lưu ở stack (high speed), data của object sẽ được lưu ở heap
+Nếu 1 biến được khai báo sau đó sử dụng, sau đó được gán lại về null, thì tại dòng null đó, biến đó là đủ điều kiện để GC thu dọn
 
 -------------- enum
 Enum
@@ -166,16 +167,18 @@ Nếu A kế thừa B, B định nghĩa cons tường minh CÓ THAM SỐ,  thì 
 => Nếu B khai Cons có tham số thì các con bắt buộc phải khai cons và gọi cons của B (chỉ cần 1 trong các cons của B, nếu B có nhiều)
 
 Interface
+Mặc định biến trong interface luôn là public static final, không thể that đổi được giá trị
 Nếu khai báo phương thức static S và method Default D
 - Static method của interface chỉ có thể gọi qua reference (interfaceName.staticMethod), không thể gọi qua interface instance, còn static của class và abs class có thể được gọi qua reference hoặc instance.
 - Default method có thể gọi qua instace, không thể gọi qua instace,  class triển khai insterface phải khai báo instace để gọi các default method này
 => Static method và default method của interface có quy tắc truy cập ngược nhau.
 => Khi A kế thừa abs class B và interface C, B và C đều khai phương thức static S,
 a.S là gọi S của B vì static method S của Class và abs class mới có thể gọi qua instance,  Static method của interface C chỉ cso thể được gọi qua referenceName
-
+Class static Phải là class con, và cos thể được extends bởi class khác, phương thưc static thì
 
 d instanceof C
 Nếu C không phải là cha hay ông nội (tính cả extends hay kế thừa) thì compile sẽ lỗi luôn, không biên dịch.
+Tương tự với ép kiểu, nếu không trong cây kế thừa sẽ lỗi luôn compile, còn trong cây rồi thì có thể compile nhưng runtime vẫn có thể lỗi do không thể casst
 
 RETURNTYPE => double, vì long < double của d nên  giá trị chung trả ra sẽ là kiểu double
 public RETURNTYPE methodX( byte by){
@@ -300,3 +303,46 @@ public class BB extends A{
         System.out.print(i + " ");
     }
 }
+
+------------------- Static var, static block
+/*
+* Nếu A kế thùa B, B có biến static, A có thể sử dụng biến này trữ tiếp thông qua tên của A: A.staticVarName, hoặc sử
+* dụng thông qua instance của A,   a.staticVarName
+* */
+public class Bai8 {
+    public static void main(String[] args) {
+//        Sub sub = new Sub();
+        System.out.println(Sub.ID);  // via reference ok
+//        System.out.println(sub.ID);  // via instance ok
+    }
+}
+class Super {
+    static { System.out.print("In Qbank");};
+    {
+        System.out.println("Instance block");
+    }
+    static String ID = " ID"; }   // nếu như khai báo final, Giá trị này sẽ được gán ở lúc Compile time và Jmv biết nó sẽ không bị thay đổi
+   // Cho nên ở hàm main khi truy cập vào ID này, JVM biết giá trị nó rồi
+// sẽ không dẫn đến sự Load của class Super trong bộ nhớ => block static sẽ không được chạy
+   // Nhưng nếu var ID này không để final, thì ở hàm main lúc gọi đến field static này, thì nó mới được gán giá trị  = "ID"
+// => Class Super sẽ được load vào bộ nhớ => block static sẽ được chạy vào lúc này
+    /* result:
+    * Class Super sẽ được JVM load vào bộ nhớ (đồng thời chạy các static block) khi xảy ra bất kỳ điều gì sau đây:
+    *  1.Class được khởi tạo với từ khóa new
+    *  2. Bất kỳ Phương thức static của class được gọi lần đầu
+    *  3. Bất kỳ biến static nào được gán giá trị lần đầu => biến đó không phải final
+    *  4. bất kỳ biến static nào được GỌI lần đầu và biến đó không phải final (non-final thì lúc này gọi JVM mới load giá trị => load class, còn nếu biến static này là final thì JVM biết rõ giá trị nó ròi, có được gọi thì class cũng không được loadd)
+    *  5. bất kỳ biến static nào điuọc gọi lần đầu  thông qua class/interface con
+    *  6. bất kỳ method thường/static nào được gọi thông qua method reflection của  class Class hoặc package java.lang.reflect
+    * */
+
+class Sub extends Super{
+    static final int t = 10;
+    static { System.out.print("In Sub");  // AAA   static block chỉ được thực thi khi mà 1 trong các sự kiện bên trên xuất hiện }
+        {
+            System.out.println("Super instance block");
+            // khối instance block chỉ được thực thi khi class được khai báo với keywỏrd NEWnhớ
+            // , còn khối static sẽ được thực thi khi mà class được load vào trong bộ
+        }
+}
+
