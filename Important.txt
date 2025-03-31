@@ -399,3 +399,21 @@ class Sub extends Super{
         }
 }
 
+--------------Kế thừa 3 thế hệ, cháu có thể sử dụng, thay đổi giá trị biến của ông
+class Gran {
+    protected int i;
+    static int s = 10;
+}
+
+class Fath extends Gran {
+    public int g;
+}
+
+class Nep extends Fath {
+   public void NepFunc() {
+       i  =10;  // ok
+       s = 100;  // ok
+   }
+}
+
+

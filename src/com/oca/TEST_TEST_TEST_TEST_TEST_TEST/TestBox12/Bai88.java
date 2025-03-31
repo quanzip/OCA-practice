@@ -26,4 +26,20 @@ interface IIC {
     void showName();
 }
 
+class Gran {
+    protected int i;
+    static int s = 10;
+}
+
+class Fath extends Gran {
+    public int g;
+}
+
+class Nep extends Fath {
+   public void NepFunc() {
+       i  =10;  // ok
+       s = 100;  // ok
+   }
+}
+
 

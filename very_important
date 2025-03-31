@@ -341,8 +341,8 @@ class Sub extends Super{
     static { System.out.print("In Sub");  // AAA   static block chỉ được thực thi khi mà 1 trong các sự kiện bên trên xuất hiện }
         {
             System.out.println("Super instance block");
-            // khối instance block chỉ được thực thi khi class được khai báo với keywỏrd NEWnhớ
-            // , còn khối static sẽ được thực thi khi mà class được load vào trong bộ
+            // khối instance block chỉ được thực thi khi class được khai báo với keywỏrd NEWnhớ, chi chạy duy nhất 1 lần khi class được load
+            // , còn khối static sẽ được thực thi khi mà class được load vào trong bộ, chạy nhiều lần mỗi khi class Object được khởi tạo
         }
 }
 
