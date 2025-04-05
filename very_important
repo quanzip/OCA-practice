@@ -346,3 +346,12 @@ class Sub extends Super{
         }
 }
 
+----------------- getClass => getClass instance
+AA a = new BB();
+        System.out.println(a.getClass());  // BB
+
+----------------- IF
+int g = 4;
+if (g-->4){   // if (10-->4)  => invalid because 10 must be var like G
+
+}

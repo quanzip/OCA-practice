@@ -416,4 +416,75 @@ class Nep extends Fath {
    }
 }
 
+-------------------------  boolean grouping
+ boolean a = false;
+        boolean b = false;
+        boolean c = true;
+        if (a && b || c) System.out.println("bo1: " + "OK");  // gom nhom a vs B, and c tach rieng
 
+        boolean d = true;
+        if (a && b && d || c) System.out.println("bo2: " + "OK"); //  gom nhom a b, d , C tach rieng
+
+        if (a || c && b) System.out.println("bo3 :" +  "OK");  // gom nhom c, b va nhom a rieng.
+
+        if (a && b || c && d) System.out.println("bo4 :" +  "OK");  // gom nhom a,b va nhom 2: c , d
+
+===================== cast
+public class Bai8 {
+    public static void main(String[] args) {
+        B b = new B();
+        System.out.println(b.i);  // 20
+        System.out.println(((A)b).i);  // 10
+    }
+}
+class A {
+    final int i = 10;
+}
+class B extends A {
+    int i = 20;
+}
+
+----------------- getClass => getClass instance
+AA a = new BB();
+        System.out.println(a.getClass());  // BB
+
+----------------- Overloading
+public class Bai4 {
+    public Integer get(Integer  s) {return 1;}
+    public Object get(Object  s) {return 1;} //  called
+    public Long get(Long  s) {return 1L;}
+    public static void main(String[] args) {
+        System.out.println(new Bai4().get("quan"));
+        System.out.println(new Bai4().get(new Bai4()));
+    }
+}
+
+
+----------------- IF
+int g = 4;
+if (g-->4){   // if (10-->4)  => invalid because 10 must be var like G
+
+}
+
+----------------- CHahcnge static var => not possible
+public class TestClass{
+  static int someInt = 10;
+  public static void changeIt(int a){
+    a = 20;
+  }
+  public static void main(String[] args){
+    changeIt(someInt);
+    System.out.println(someInt);
+  }
+}
+
+
+------------------  Để ý câu hỏi: làm sa0 để đỏi data của biến d hiện tại, chứ k phải gán cho 1 đối tượng mới,
+thì data của biến d ban đầu vẫn giữ nguyên giá tị ban đầu nhưng k được sd nữa
+public class TestClass {
+    public static void main(String[] args) throws Exception {
+        Data d = new Data(1, 1);
+        //add code here
+    }
+}
+Which of the following options when applied individually will change the Data object currently referred to by the variable d to contain 2, 2 as values for its data fields?
