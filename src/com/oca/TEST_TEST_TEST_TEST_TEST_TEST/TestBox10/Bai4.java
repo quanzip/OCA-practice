@@ -10,7 +10,7 @@ public class Bai4 {
 
         int g = 4;
         if (g-->4){   // if (10-->4)  => invalid because 10 must be var like G
-
+            Thử khai báo biến final là đối tượng để xem Object đó được load khi bào vÀ biến final đó được load khi nào
         }
     }
 }

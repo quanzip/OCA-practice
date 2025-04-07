@@ -41,3 +41,38 @@ class Sub extends Super{
         };
 }
 
+
+
+// class NewClass{
+//    private Object o;
+//    void doSomething(Object s){  o = s;   }
+//
+//    public static void main(String args[]){
+//        Object obj = new Object(); // 1
+//        NewClass tc = new NewClass(); //2
+//        tc.doSomething(obj); //3
+//        obj = new Object();    //4  /data cu van con
+//        obj = null;    //5
+//        tc.doSomething(obj); //6    //  ok
+//    }
+//}
+//
+// class TestClass{
+//    public static void main (String args[]){
+//
+//        Student s = new Student("Vaishali", "930012");
+//
+//        s.grade();
+//
+//        System.out.println(s.getName());
+//
+//        s = null;ok   // ok  data cu thi ko co reference nao,  khong co instance nao tro vao S   , data cu cos the dc don
+//
+//        s = new Student("Vaishali", "930012");   // s tro vao 1 vung nho data heap
+//
+//        s.grade();
+//
+//        System.out.println(s.getName());
+//             s = null;
+//    }
+//}

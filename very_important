@@ -2,6 +2,9 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+// khi đã khai thuộc tính final thì phải gán giá trị ngay hoặc
+     // phải gán trong constructor hoặc trong static block
+
 /*
 * Khi khai báo String với new String("ok")  thì sẽ có 2 object được khởi tạo
 * 1. new String("ok") là khởi tạo 1 object nên sẽ được lưu ở trong heap.
