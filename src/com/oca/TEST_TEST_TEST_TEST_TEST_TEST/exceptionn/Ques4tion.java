@@ -19,10 +19,12 @@ public class Ques4tion {
         float f1 = (float) Float.NaN;
         System.out.println("F1" + f1);
 
-        System.out.println("--------------Question4-------------");
-        fin("0.1");
-        fin("1");
-        fin("0.x1");
+        System.out.println("--------------Question4  1-------------");
+        System.out.println(fin("0.1"));
+        System.out.println("--------------Question4 2-------------");
+        System.out.println(fin("1"));
+        System.out.println("--------------Question4 3-------------");
+        System.out.println(fin("0.x1"));
 
     }
 
@@ -38,7 +40,10 @@ public class Ques4tion {
             return res;
         } finally {
             System.out.println("finally");
+            return 9f;
+            //  vì finally luôn được chạy nên:  nếu trong try có return nhưng finaly không có return thì return vẫn chạy nhưng trả kết quả là từ return của try
+            // Nếu try/catch/finally đều có return thì method sẽ lấy giá trị return của finally
         }
-        // return res;   // unreach this line => compile error because try has return and catch either
+//         return res;   // unreach this line => compile error because try has return and catch either
     }
 }

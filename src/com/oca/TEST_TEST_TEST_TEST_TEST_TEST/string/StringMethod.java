@@ -12,6 +12,7 @@ package com.oca.TEST_TEST_TEST_TEST_TEST_TEST.string;
 import java.util.Arrays;
 
 public class StringMethod {
+    static char ch;
     public static void main(String[] args) {
         Number s = new Integer(1);
         String a = "ozoboz";
@@ -48,6 +49,14 @@ public class StringMethod {
 
         r = new ObjectR();
         r.name = "asdkjhasd";
+
+        int i;
+//        int g = i  + 5;   // thất bại vì chỉ có thể dùng nếu I là biến toàn cục, đây i là biến cục bộ, phải khai báo giá trị trước khi dùng.
+
+        float sd = 1.38495_____34f;
+        int _t = 1000____00;
+        System.out.println("Giá trị đặc bieejt6 + " + _t + sd);
+        System.out.println("Khoi tao gia tri mac dinh cua char : " + ch);
     }
 }
 // java dung co che callByValue de goi ham: truyen vao 1 ban copy X cua cac object goc G de thuc thi tren do, neu thay doi thuoc tinh thi ca 2 se bi thay doi

@@ -2,6 +2,19 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+trong 1 class, instance var là các biến ko phải static, class variable là các biến static
+
+Class Exception la checked Ex, Nên khi throw new Exception thì phải try-catch, try-catch nếu có finally  thì bên trong try-catch có văng ra new Exception cũng ko cần bắt vì nó còn đi vào finally, nếu finally văng thì phải khai báo try-catch hoặc khai báo trên method signature
+
+//  vì finally luôn được chạy nên:  nếu trong try có return nhưng finaly không có return thì return vẫn chạy nhưng trả kết quả là từ return của try
+            // Nếu try/catch/finally đều có return thì method sẽ lấy giá trị return của finally
+
+QuANTRONG
+khi mà class chỉ có các kiểu primative hoặc các kiểu wrapper của chúng thì sẽ không có các import cụ thể, JVM tự import các import sau: 1.Java lang,2.The package with no name.
+=> tất cả các đối tượng mà từ pkg java.lang và các package noName thì sẽ không cần import tường minh, jvm tự động import khi biên dịch
+
+  int []i = {1,2,2}; i.getClass().isArray() => true; cũng đúng với các kiểu khác như Object...
+
 // khi đã khai thuộc tính final thì phải gán giá trị ngay hoặc
      // phải gán trong constructor hoặc trong static block
 
