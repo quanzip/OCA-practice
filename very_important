@@ -2,6 +2,12 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+  int[]bai1, bai2[];
+          int bai3[];
+          int[] bai4[];
+          bai1 = new int[]{1, 2}; // 1 chieu   // day la khoi tao gia tri sau khi khai bao,
+          // khi khai bao khong khoi tao luon se phai lam nhu nay, neu khoi tao luc khai bao thi co the bai1 = {1,2}
+
 trong 1 class, instance var là các biến ko phải static, class variable là các biến static
 
 Class Exception la checked Ex, Nên khi throw new Exception thì phải try-catch, try-catch nếu có finally  thì bên trong try-catch có văng ra new Exception cũng ko cần bắt vì nó còn đi vào finally, nếu finally văng thì phải khai báo try-catch hoặc khai báo trên method signature
@@ -22,6 +28,8 @@ Nếu chỉ rõ khai báo 1 object từ đâu bắt đàu bằng package name g�
  Nếu có 2 class trong cùng 1 pkg thì 1 trong 2 class gọi nhau sẽ ko cần import, ok,
 * Nếu chúng ở khác pkg thì khi gọi nhau phải có import cự thể.
 * Nếu dùng import white card pkg K trong class C để gọi class B, nhưng trong cùng package với C cũng có 1 class tên B khác, thì nó sẽ là ref của B trong cùng pkg với C (k ưu tiên white card)
+
+Nếu nạp chồng method mà có 1 method có param int ...X và 1 method có param long x thì khi truyền 1 vào sẽ ăn vào phương thức có long là param.  truyền mảng mới ăn phương thức kia.
 
 /*
 * Khi khai báo String với new String("ok")  thì sẽ có 2 object được khởi tạo
@@ -48,6 +56,14 @@ Interface khai static method, thì static method này chỉ có thể được g
 => Nếu abs class C và interface D cùng có 1 phương thức static S, thì khi khai íntance A a = new A,  a.S là sẽ gọi phương thức của abs class C,
 chứ ko gọi S của inteface D bởi vì class có thể gọi phương thức static bằng instace của nó,   nhưng interface thì không
 
+/*
+* Phương thức defualt của interface có thể được kế thừa hoặc ko, nếu như con khai báo phương thức giống signature
+*  của phương thức default của interface thì đang là kế thừa
+*
+* Nếu phương thức kế thừa lại khai báo là static thì ko được do phương thức default dành cho instance, còn static method là của refernce
+*
+* Không kể là interface hay class thường, nếu kế thừa nhau và dều có PT static giống nhau thì ok, ko sao do PT static thì ko thể được kế thừa
+* */
 
  class Animal1 {
      static String name;

@@ -2,6 +2,12 @@ Package statement luôn đứng đầu, sau mới đến import statement
 
 a class can not be sub-classed có nghĩa là 1 class không thể bị kế thừa
 
+int[]bai1, bai2[];
+          int bai3[];
+          int[] bai4[];
+          bai1 = new int[]{1, 2}; // 1 chieu   // day la khoi tao gia tri sau khi khai bao,
+          // khi khai bao khong khoi tao luon se phai lam nhu nay, neu khoi tao luc khai bao thi co the bai1 = {1,2}
+
 thuộc tính private thì chỉ có thể sd ở bên trong class chứ không phải bên trong file
 
 trong 1 class, instance var là các biến ko phải static, class variable là các biến static
@@ -76,6 +82,15 @@ khởi tạo, để chúng có thể được sử dụng ở bất kỳ đâu t
 đợi khi class được khởi tạo (using new) thì chúng mới được load
 Trong ngữ cảnh static, chỉ có thể sử dụng các biến/phương thức static, không thể gọi, sử dụng biến, phương thức thường.
  * Ngược lại, trong ngữ cảnh thường, có thể gọi , sử dụng mọi loại biến, phương thức: thường và static
+
+/*
+* Phương thức defualt của interface có thể được kế thừa hoặc ko, nếu như con khai báo phương thức giống signature
+*  của phương thức default của interface thì đang là kế thừa
+*
+* Nếu phương thức kế thừa lại khai báo là static thì ko được do phương thức default dành cho instance, còn static method là của refernce
+*
+* Không kể là interface hay class thường, nếu kế thừa nhau và dều có PT static giống nhau thì ok, ko sao do PT static thì ko thể được kế thừa
+* */
 
 ------------ INI ORDER
 - bên trong 1 class, có thể có khối static block, khối block thường (non static) và constructor, thứ tự thực thi của chúng như sau:
