@@ -17,6 +17,12 @@ khi mà class chỉ có các kiểu primative hoặc các kiểu wrapper của c
 
   int []i = {1,2,2}; i.getClass().isArray() => true; cũng đúng với các kiểu khác như Object...
 
+Nếu chỉ rõ khai báo 1 object từ đâu bắt đàu bằng package name gốc thì ko cần import: util.log4j.Logger log = new util.log4j.Logger() => ko cần import gì cả
+ Nếu có 2 class trong cùng 1 pkg thì 1 trong 2 class gọi nhau sẽ ko cần import, ok,
+* Nếu chúng ở khác pkg thì khi gọi nhau phải có import cự thể.
+* Nếu dùng import white card pkg K trong class C để gọi class B, nhưng trong cùng package với C cũng có 1 class tên B khác, thì nó sẽ là ref của B trong cùng pkg với C (k ưu tiên white card)
+
+
 Khai báo biến:
 final int c = 10; biến constant, được biên dịch gán gái trị ngay khi viết codetime: compile-time
 final int d; NOT initialied khi compile-
