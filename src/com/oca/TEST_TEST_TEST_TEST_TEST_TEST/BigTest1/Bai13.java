@@ -17,6 +17,9 @@ interface X {
     default void show() {
         System.out.println("Default x");
     }
+    static void go() {
+        System.out.println("Default x");
+    }
 }
 
 
@@ -29,13 +32,17 @@ interface Y extends X {
         System.out.println("Default Y");
     }
 
-    static void get() {   // not ok
-        System.out.println("Default y");
+    default void get() {   // not ok
+        System.out.println("static y");
+    }
+
+    default void go() {
+        System.out.println("Default x");
     }
 }
 
 class C implements Y {
-    static void get() {  // ok
+    public void get() {  // ok
         System.out.println("Static C");
     }
 

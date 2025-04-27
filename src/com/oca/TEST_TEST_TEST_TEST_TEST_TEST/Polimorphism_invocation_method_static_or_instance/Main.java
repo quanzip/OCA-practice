@@ -5,8 +5,9 @@ import java.util.Calendar;
 
 /*
  * - khi @Override phương thức của cha ở class con, phương thức @Override ở class con phải có signature giống y hệt với cha
- *  gồm: tên phương thức, thứ tự param và kiểu trả về, riêng kiểu trả về thì phải giống hoặc là kiểu con (is a) đối với kiểu của phương thức gốc
- * , nếu khác signature, ta chỉ đang overload (ghi đè phương thức, không phải override)
+ *  gồm: tên phương thức, thứ tự param
+ *  Nếu giống signature rồi nhưng kiểu trả vể (return type không thuộc method signature) không giống với cha, jvm sẽ báo lỗi do đang kế thừa nhưng lại để khác kiểu với cha, riêng kiểu trả về thì phải giống hoặc là kiểu con (is a) đối với kiểu của phương thức gốc
+ * , nếu khác signature thì (methodName and param type), ta chỉ đang overload (ghi đè phương thức, không phải override) thì để kiểu trả về khác nhau ok
  * - Tiếp đó là giới hạn truy cập của @override ở class con không được hẹp hơn, ít nhất là bằng hoặc mở hơn so với phương thức gốc ở class cha.
  * nếu phương thức cha là package private, thì class con cũng phải ở cùng package với cha mới có thể override
  * - Checked exception phương thức @Override ở class con không thể throw nhiều và exception mở hơn so với phương thức gốc ở class cha.

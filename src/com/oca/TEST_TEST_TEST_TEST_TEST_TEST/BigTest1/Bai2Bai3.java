@@ -20,7 +20,8 @@ public class Bai2Bai3 {
             throw new Exception();
         }
         finally {
-            return f;     // 6
+            return f;     // 6  Do ở đây có return nên việc throw ex ở trong catch mới ko phải bắt exex
+            // , nếu ko có return sẽ eror compile vì yêu cầu catch
 
         }
 //        return f ;    // 7

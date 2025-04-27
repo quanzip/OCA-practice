@@ -2,6 +2,9 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+Lợi ích của polimorphism (đa hình):
+Code sử dụng lại được (reuseable), Bảo trì dễ hơn (maintenance)
+
   int[]bai1, bai2[];
           int bai3[];
           int[] bai4[];
@@ -10,7 +13,8 @@ Chỉ class con mới có thể là static class. và nó cũng có thể là pr
 
 trong 1 class, instance var là các biến ko phải static, class variable là các biến static
 
-Class Exception la checked Ex, Nên khi throw new Exception thì phải try-catch, try-catch nếu có finally  thì bên trong try-catch có văng ra new Exception cũng ko cần bắt vì nó còn đi vào finally, nếu finally văng thì phải khai báo try-catch hoặc khai báo trên method signature
+Class Exception la checked Ex, Nên khi throw new Exception thì phải try-catch, try-catch nếu có finally có return trong finally thì bên trong try-catch có văng ra new Exception cũng ko cần bắt vì nó còn đi vào finally và return ở finallythì
+, nếu finally văng thì phải khai báo try-catch hoặc khai báo trên method signature, hoặc nếu finally không có return thì throw checkeex ở trong catch ra cũng phải try-catch
 
 //  vì finally luôn được chạy nên:  nếu trong try có return nhưng finaly không có return thì return vẫn chạy nhưng trả kết quả là từ return của try
             // Nếu try/catch/finally đều có return thì method sẽ lấy giá trị return của finally
@@ -57,13 +61,9 @@ Interface khai static method, thì static method này chỉ có thể được g
 chứ ko gọi S của inteface D bởi vì class có thể gọi phương thức static bằng instace của nó,   nhưng interface thì không
 
 /*
-* Phương thức defualt của interface có thể được kế thừa hoặc ko, nếu như con khai báo phương thức giống signature
-*  của phương thức default của interface thì đang là kế thừa
-*
-* Nếu phương thức kế thừa lại khai báo là static thì ko được do phương thức default dành cho instance, còn static method là của refernce
-*
-* Không kể là interface hay class thường, nếu kế thừa nhau và dều có PT static giống nhau thì ok, ko sao do PT static thì ko thể được kế thừa
-* */
+* Dùng phương thức non static để kế thừa 1 phương thức static là không được và ngược lại, tức là cha và con có cùng 1 phương thức, có quan hệ kế thừa.
+  trường hợp đặc biệt: Khi interfa có phương static X, Và được interface B kế thừa thì B có thể khai X với default (non-static)
+ */
 
  class Animal1 {
      static String name;
@@ -392,3 +392,23 @@ int g = 4;
 if (g-->4){   // if (10-->4)  => invalid because 10 must be var like G
 
 }
+
+
+------------- mảng 2 chiều
+ int [][]i = {{1,2}, {1,3,4}};
+        System.out.println(i);
+
+i[2]= new int[]{4, 5, 6, 7}; // error,  Khi đã khai báo int [][]i = {{1,2}, 4{1,3,4}}; là đã gán cứng size của mảng 2 chiều là 2 hàng 3 cột, không thể thêm.
+
+// để ý câu hroi
+Which of the following code fragments will successfully initialize a two-dimensional array of chars named cA with a size such that cA[2][3] refers to a valid element?
+
+// ásk
+Consider: o1 and o2 denote two object references to two different objects of the same class. Which of the following statements are true?
+Lựa chọn của bạn đúng
+Nothing can be said about o1.equals(o2) regarding what it will return based on the given information.
+o1.equals(o2) will always be false.
+o1.hashCode() == o2.hashCode() will always be false.
+Nothing can be said about o1 == o2.
+Lựa chọn của bạn đúng
+o1 == o2 will always be false.
