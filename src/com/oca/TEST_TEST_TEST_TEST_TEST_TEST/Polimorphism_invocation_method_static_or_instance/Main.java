@@ -9,6 +9,7 @@ import java.util.Calendar;
  *  Nếu giống signature rồi nhưng kiểu trả vể (return type không thuộc method signature) không giống với cha, jvm sẽ báo lỗi do đang kế thừa nhưng lại để khác kiểu với cha, riêng kiểu trả về thì phải giống hoặc là kiểu con (is a) đối với kiểu của phương thức gốc
  * , nếu khác signature thì (methodName and param type), ta chỉ đang overload (ghi đè phương thức, không phải override) thì để kiểu trả về khác nhau ok
  * - Tiếp đó là giới hạn truy cập của @override ở class con không được hẹp hơn, ít nhất là bằng hoặc mở hơn so với phương thức gốc ở class cha.
+ * => abstract class đã có abstract thì không kèm final/private
  * nếu phương thức cha là package private, thì class con cũng phải ở cùng package với cha mới có thể override
  * - Checked exception phương thức @Override ở class con không thể throw nhiều và exception mở hơn so với phương thức gốc ở class cha.
  * - Đối với unchecked exception, phương thức con có thể throw bao nhiêu tùy ý

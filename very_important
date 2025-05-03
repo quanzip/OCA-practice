@@ -2,6 +2,25 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+* - Tiếp đó là giới hạn truy cập của @override ở class con không được hẹp hơn, ít nhất là bằng hoặc mở hơn so với phương thức gốc ở class cha.
+ * => abstract class đã có abstract thì không kèm final/private
+ * nếu phương thức cha là package private, thì class con cũng phải ở cùng package với cha mới có thể override
+ * - Checked exception phương thức @Override ở class con không thể throw nhiều và exception mở hơn so với phương thức gốc ở class cha.
+  - Chỉ có thể throw nhiều hơn nếu pt gốc và pt override throw exception là cả cha và con (con là ko cần thiết) thì ở phương thức gốc có thể bỏ bớt exception của con, có
+  vd nếu ở pt gốc đang throw cả 2 là IOException và fileNotfoundExcetion  thì có thể bỏ fileNotFoundEx, nhưng ở override pt vẫn có thể giữ, nhưng lại không thể throw thêm như Exception vì ở class gốc ko có
+
+        int[] x = new int[0]; // ok
+        int[][] b = null;  // ok
+        int c[] = null;    // ok
+//        int d = null;   // error
+//        long l = null;  // error
+Các kiểu primative int, long, short,,, đơn khôg thể gán null, phải gán giá trị. Nếu là global var sẽ được tự động gán là 0, 0.0,.., sẽ được tự cast nếu gán cho khác loại vd: long x = 'c' => ok.
+Nhưng có thể gán kiểu mảng private int[] hay long [][]  cho null., khi truy cập vào các element này sẽ văng null pointer ex
+
+protected void getInfo() throws IOException, FileNotFoundException, IllegalArgumentException {
+    // throw cha kèm con: ok
+}
+
 Lợi ích của polimorphism (đa hình):
 Code sử dụng lại được (reuseable), Bảo trì dễ hơn (maintenance)
 
@@ -18,6 +37,11 @@ Class Exception la checked Ex, Nên khi throw new Exception thì phải try-catc
 
 //  vì finally luôn được chạy nên:  nếu trong try có return nhưng finaly không có return thì return vẫn chạy nhưng trả kết quả là từ return của try
             // Nếu try/catch/finally đều có return thì method sẽ lấy giá trị return của finally
+Chỉ có thể khai khối trycatch của checked exception khi mà code trong try có nguy cơ văng checkedExcoeion. nếu ko, ko được khai  try catch(Checked ex)
+Còn ở method signature thì có thể khai throws checkedEx/unchecked ex mà trong body không cần văng ra gì.
+
+class PortConnector {
+    public PortConnector(int port) throws IOException { // có thể khai throw ex ở constructor signature
 
 QuANTRONG
 khi mà class chỉ có các kiểu primative hoặc các kiểu wrapper của chúng thì sẽ không có các import cụ thể, JVM tự import các import sau: 1.Java lang,2.The package with no name.
@@ -27,6 +51,9 @@ khi mà class chỉ có các kiểu primative hoặc các kiểu wrapper của c
 
 // khi đã khai thuộc tính final thì phải gán giá trị ngay hoặc
      // phải gán trong constructor hoặc trong static block
+
+Thuộc tính protected dùng cho class con(ở bất kỳ đâu) hoặc trong cùng package (k được kể cả trong package con.)
+Implement chuẩn đóng gói sẽ là các thuộc tính phải để private, các PT get set phải để public hoặc protected
 
 Nếu chỉ rõ khai báo 1 object từ đâu bắt đàu bằng package name gốc thì ko cần import: util.log4j.Logger log = new util.log4j.Logger() => ko cần import gì cả
  Nếu có 2 class trong cùng 1 pkg thì 1 trong 2 class gọi nhau sẽ ko cần import, ok,
@@ -124,7 +151,9 @@ Nhưng nếu D là 1 normal class (non static): Thì cần khởi tạo Class X 
 * while chỉ lặp nếu biểu thức điều kiện ok
 * Do-while sẽ thực thi ít nhất 1 lần, ở những lần lặp tiếp theo, sẽ phụ thuộc vào điều kiện ủa while trả ra, cần chú ý vị trí thay đổi điều kiện ex: do{}while(i++<10) thì i sẽ so sánh với 10 trước rồi mới cộng thêm 1
 == Khi dùng label, có thể dùng cho 1 lệnh bất kỳ ex (OK:sout("quan")), nhưng không thể dùng break/continue cho cho các lệnh này, vì chúng không đại diện cho 1 loop.
-điều kiện của if(false), do{}while(false) có thể để cứng là false, nhưng với while(false) và for(;false;) sẽ compile error.  for(;;) -> ok, nếu điều kiện xác định từ non-final var, thì vẫn sẽ ok vì JVM sẽ valuate at runtime
+điều kiện của if(false), do{}while(false) có thể để cứng là false => ok, nhưng với while(false) và for(;false;) sẽ compile error.  for(;;) -> ok, nếu điều kiện xác định từ non-final var, thì vẫn sẽ ok vì JVM sẽ valuate at runtime
+for(;true;) hay while(true){} => ok
+if (1==20) {}// ok
 
 ----------------switch
  // Các giá trị trong case phải trong khoảng giá trị cho phép của kiểu truyền vào trong switch - phải được xác định ngay lúc compile(khi viết mã)

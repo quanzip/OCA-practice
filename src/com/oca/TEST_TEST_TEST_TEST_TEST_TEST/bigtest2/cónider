@@ -1,0 +1,36 @@
+Consider the following code:
+interface Bar{     void bar();
+}
+abstract class FooBase{
+    public static void bar(){
+        System.out.println("In static bar");
+    }
+}
+public class Foo extends FooBase implements Bar {
+}
+What can be done to the above code so that it will compile without any error?
+
+static int[] x = new int[0];
+
+class Base{
+    void method1() throws java.io.IOException, NullPointerException{
+        someMethod("arguments");
+        // some I/O operations
+    }
+    int someMethod(String str){
+        if(str == null) throw new NullPointerException();
+        else return str.length();
+    }
+}
+
+Which of the following standard java exception classes extend java.lang.RuntimeException?
+
+
+class PortConnector {
+    public PortConnector(int port) {
+       if (Math.random() > 0.5) {
+           throw new IOException();
+       }
+       hrow new RuntimeException();
+   }
+}
