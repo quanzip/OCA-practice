@@ -2,6 +2,8 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+* thú tự ưu tiên gọi các phương thức nạp chồng overloading: Nếu param là 1 số Integer thì thứ tự các PT nạp chồng có param như sau:  INteger/int -> long ->  Integer.../int.../long...
+
 * - Tiếp đó là giới hạn truy cập của @override ở class con không được hẹp hơn, ít nhất là bằng hoặc mở hơn so với phương thức gốc ở class cha.
  * => abstract class đã có abstract thì không kèm final/private
  * nếu phương thức cha là package private, thì class con cũng phải ở cùng package với cha mới có thể override
