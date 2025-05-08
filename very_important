@@ -4,6 +4,11 @@ Chỉ class con mới có thể là static class. và nó cũng có thể là pr
 
 * thú tự ưu tiên gọi các phương thức nạp chồng overloading: Nếu param là 1 số Integer thì thứ tự các PT nạp chồng có param như sau:  INteger/int -> long ->  Integer.../int.../long...
 
+Exception E= null;
+throw E => nullPointerEx; => compile ok
+
+Exception E= new Exception();, sout(E) => java.Exception: E.message
+
 * - Tiếp đó là giới hạn truy cập của @override ở class con không được hẹp hơn, ít nhất là bằng hoặc mở hơn so với phương thức gốc ở class cha.
  * => abstract class đã có abstract thì không kèm final/private
  * nếu phương thức cha là package private, thì class con cũng phải ở cùng package với cha mới có thể override
@@ -16,7 +21,7 @@ Chỉ class con mới có thể là static class. và nó cũng có thể là pr
         int c[] = null;    // ok
 //        int d = null;   // error
 //        long l = null;  // error
-Các kiểu primative int, long, short,,, đơn khôg thể gán null, phải gán giá trị. Nếu là global var sẽ được tự động gán là 0, 0.0,.., sẽ được tự cast nếu gán cho khác loại vd: long x = 'c' => ok.
+Các kiểu primative int, long, short,,, đơn khôg thể gán null, phải gán giá trị. Nếu là global var hoặc là khai báo 1 mảng int[10] sẽ được tự động gán là 0, 0.0,.., tương tự với các pt của mảng sẽ được tự cast nếu gán cho khác loại vd: long x = 'c' => ok.
 Nhưng có thể gán kiểu mảng private int[] hay long [][]  cho null., khi truy cập vào các element này sẽ văng null pointer ex
 
 protected void getInfo() throws IOException, FileNotFoundException, IllegalArgumentException {
@@ -34,6 +39,7 @@ Code sử dụng lại được (reuseable), Bảo trì dễ hơn (maintenance)
 
 trong 1 class, instance var là các biến ko phải static, class variable là các biến static
 
+finally block is always executed (Only exception is System.exit();)
 Class Exception la checked Ex, Nên khi throw new Exception thì phải try-catch, try-catch nếu có finally có return trong finally thì bên trong try-catch có văng ra new Exception cũng ko cần bắt vì nó còn đi vào finally và return ở finallythì
 , nếu finally văng thì phải khai báo try-catch hoặc khai báo trên method signature, hoặc nếu finally không có return thì throw checkeex ở trong catch ra cũng phải try-catch
 
