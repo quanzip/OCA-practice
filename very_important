@@ -2,6 +2,8 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+Java.lang.Error la Exception ke thua Throwable => checked Ex.
+
 * thú tự ưu tiên gọi các phương thức nạp chồng overloading: Nếu param là 1 số Integer thì thứ tự các PT nạp chồng có param như sau:  INteger/int -> long ->  Integer.../int.../long...
 
 Exception E= null;
@@ -166,9 +168,11 @@ if (1==20) {}// ok
 ----------------switch
  // Các giá trị trong case phải trong khoảng giá trị cho phép của kiểu truyền vào trong switch - phải được xác định ngay lúc compile(khi viết mã)
         // default case có thể đặt tại bát cứ đâu.
+        // Các kiểu có thể dùng: int short byte char string, enum và các kiểu wrappẻ của chúng.
         // Nếu không sử dụng break ở mỗi case, thì khi switch chạy, case X có giá trị thỏa mãn, thì tất cả các logic
         // từ X trở xuống, bao gồm logic của các case khác cũng được xử lý mặc dù giá trị của case là không khớp
-        // và bao gồm cả logic của DEFAULT nếu default để phía dưới case đó. Sẽ chạy đến khi nào gặp
+        // và bao gồm cả logic của DEFAULT nếu default để phía dưới case đó. Sẽ chạy đến khi nào gặp break
+        // Nếu để default ở trên đầu, các case phía dưới ko có break, ko match case nào => ăn vào default và tất cả các case phía dưới bởi defualt ko có break và các case cũng ko có break;
         //
         // ex
         // Trong ví dụ dưới. các case không có break, case: 1 không thỏa mãn, logic của nó không được chạy
@@ -206,6 +210,14 @@ Vào lần sử dụng đầu tiên của bất kỳ enum reference nào. tất 
 Trong enum có các method, các method là chung cho tất cả các reference, được sử dụng bởi các instance.  Nếu bất kỳ thành viên của enum muốn có riêng thêm hoặc overide lại method chung, thì khai báo trong body riêng của chúng. Nhớ phải có ; ở cuối {};
 Instance của enum có thể gọi các method chúng. không thể gọi các method riêng bởi vì khi khai báo là EnumType name = EnumType.Xvalue nên instance này chỉ gọi được các method chung.
 Nếu enum khai báo phương thức trừu tượng (có từ khác abstract) thì tất cả các thành viên phải overide lại method này
+
+1 Phương thức có thể throw bất kỳ ex nào ở signature, mà trong body không có rủi ro throw hoặc body không throw gì cả
+
+trong câu hỏi đoạn code chạy sẽ in ra cái gì:
+Để ý các đáp án có thể đúng 1 phần => vẫn coi là đúng. vis dụ, toàn luồng in ra A B C D
+thì câu trả lời đúng có thể là : in ra A B in that order hoặc The program will print A => đúng
+
+There is a java.lang.OutOfMemoryError but no MemoryException. There is also a java.lang.StackOverflowError.
 
 --------------- Exception
 /*

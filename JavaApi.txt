@@ -1,0 +1,11 @@
+ - LocalDate date = LocalDate.of(2020, 9, 31);   Tháng 9 chỉ có 30 ngày, compile ok, run throw Ex
+ -  List<Integer> list = new ArrayList<>();
+            list.add(100);  // tự động được auto boxing về Integer.
+            líst.remove(100) // List luôn có PT remove(int index) và remove(Integer object) =>
+             nếu truyền int mà ko phải Integer => ăn vào remove at index => run throw IndexOutOfBoundEx
+             Lưu ý khi  list.remove('O'); => vẫn là đang remove at index do 'O' của char được chuyển auto sang int
+ - Khi sử dụng object.equal()  thì 2 object phải cùng loại nhau. nếu ko mặc định là false.
+ - Không thể vừa lặp vừa xóa phần tử với cùng 1 reference of list, muốn xóa trong khi lặp phải dùng iterator, nó sẽ cập nhật size của list khi chúng ta gọi xóa
+ -  Period period = Period.of(0, 0, 0); sẽ in ra: P0D, nếu nhập đủ ngày tháng năm sẽ in ra: PnYtMnD, khi
+ - Khi dùng api ArrayList.clone(); thi sẽ trả ra 1 Líst nhưng các phần tử  của list vẫn tham chiếu tới các phần tử ở list gốc. nếu hay đổi data của phần tử list nào thì list khác cũng bị thay đổi, nếu chỉ remove phần tử ở list nào thì list khác ko đổi.
+ - Khi dùng StringBuilder.tóString() thì sẽ trả ra 1 string với constructor: new String() nên luôn là 1 string mới, có địa chỉ mới.
