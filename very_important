@@ -4,6 +4,12 @@ Chỉ class con mới có thể là static class. và nó cũng có thể là pr
 
 Java.lang.Error la Exception ke thua Throwable => checked Ex.
 
+có 3 kiểu sử dụng lambda: 1 là a-> a > 0, 2 là (Employee e) -> { return e.getSalary() >= 10000; } , 3 là a -> {return a > 0;}
+System.out.println("Output is: " + 10 != 5);  => phải có đóng mở ngoặc cho (10 != 5) và không có operator ưu tiên nên sẽ là phép cộng được thực hiện trước, nên sai cú pháp
+Nếu là 10 * 5 là phép cộng ưu tiên thì không cần ngoặc
+Khi truyền Object vào method thì chỉ là truyền copy của object đó, cùng trỏ tới data thật nên khi thay đổi giá trị property thì cả 2 obejct đều được thay đổi
+, nhưng nếu obejct copy trong method được gán sang 1 instance khác thì obejct cũ vẫn bình thường, khong bị thay đổi gì, giờ là 2 reference trỏ đến 2 obejct khác biệt hoàn toàn.
+
 * thú tự ưu tiên gọi các phương thức nạp chồng overloading: Nếu param là 1 số Integer thì thứ tự các PT nạp chồng có param như sau:  INteger/int -> long ->  Integer.../int.../long...
 
 Exception E= null;

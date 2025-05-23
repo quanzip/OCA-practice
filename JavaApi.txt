@@ -9,3 +9,7 @@
  -  Period period = Period.of(0, 0, 0); sẽ in ra: P0D, nếu nhập đủ ngày tháng năm sẽ in ra: PnYtMnD, khi
  - Khi dùng api ArrayList.clone(); thi sẽ trả ra 1 Líst nhưng các phần tử  của list vẫn tham chiếu tới các phần tử ở list gốc. nếu hay đổi data của phần tử list nào thì list khác cũng bị thay đổi, nếu chỉ remove phần tử ở list nào thì list khác ko đổi.
  - Khi dùng StringBuilder.tóString() thì sẽ trả ra 1 string với constructor: new String() nên luôn là 1 string mới, có địa chỉ mới.
+ - StringBuilder không thể append null là tham số. compiler erorr
+ - Khi khai báo new StringBuilder(100); -> khai báo size initialed, khi get sb.length = 0, sb.tóString.length = 0
+ - khi dùng;  kết hợp với localDate.at(LocalTime.MAX) -> in ra ngàyTgio.999999999,  nếu chỉ là localDate: yyyy-mm-dd, nếu chỉ là localTime: hh:mm:ss nếu khai ss trong constructor
+ LocalTime.MIN = LocalTime.MIDNIGHT = 00:00, LocalTime.NOON = 12:00
