@@ -4,6 +4,18 @@ Chỉ class con mới có thể là static class. và nó cũng có thể là pr
 
 Java.lang.Error la Exception ke thua Throwable => checked Ex.
 
+Student() {
+         Student("James", 25); // eror: khi gọi constructor khác, phải dùng this(...)
+     }
+
+ Student(String name, int age) {
+     this.name = name;
+     this.age = age;
+ }
+
+Khi dùng list kiểu <Integer,Short,Byte,Char,Boolean> thì việc add(12 hoặc 'c') => auto Bõxing thì giá trị từ -128 .. 127 sẽ được lưu vào trong memory. lớn hơn sẽ không lưu
+ khi lưu vào như vậy thì lần tới add giá trị trong khoảng đó sẽ tìm trong memory trước. nếu có rồi thì lấy ra dùng. ko tạo mới, nếu ngoài khoảng. luôn tạo mới trong memory
+
 có 3 kiểu sử dụng lambda: 1 là a-> a > 0, 2 là (Employee e) -> { return e.getSalary() >= 10000; } , 3 là a -> {return a > 0;}
 System.out.println("Output is: " + 10 != 5);  => phải có đóng mở ngoặc cho (10 != 5) và không có operator ưu tiên nên sẽ là phép cộng được thực hiện trước, nên sai cú pháp
 Nếu là 10 * 5 là phép cộng ưu tiên thì không cần ngoặc

@@ -1,4 +1,3 @@
- - LocalDate date = LocalDate.of(2020, 9, 31);   Tháng 9 chỉ có 30 ngày, compile ok, run throw Ex
  -  List<Integer> list = new ArrayList<>();
             list.add(100);  // tự động được auto boxing về Integer.
             líst.remove(100) // List luôn có PT remove(int index) và remove(Integer object) =>
@@ -6,10 +5,29 @@
              Lưu ý khi  list.remove('O'); => vẫn là đang remove at index do 'O' của char được chuyển auto sang int
  - Khi sử dụng object.equal()  thì 2 object phải cùng loại nhau. nếu ko mặc định là false.
  - Không thể vừa lặp vừa xóa phần tử với cùng 1 reference of list, muốn xóa trong khi lặp phải dùng iterator, nó sẽ cập nhật size của list khi chúng ta gọi xóa
- -  Period period = Period.of(0, 0, 0); sẽ in ra: P0D, nếu nhập đủ ngày tháng năm sẽ in ra: PnYtMnD, khi
  - Khi dùng api ArrayList.clone(); thi sẽ trả ra 1 Líst nhưng các phần tử  của list vẫn tham chiếu tới các phần tử ở list gốc. nếu hay đổi data của phần tử list nào thì list khác cũng bị thay đổi, nếu chỉ remove phần tử ở list nào thì list khác ko đổi.
+ - list.remove(Object) return boolean
+ - Líst.remove(index) return Object, so can not put it in IF
+
+ - LocalDate date = LocalDate.of(2020, 9, 31);   Tháng 9 chỉ có 30 ngày, compile ok, run throw Ex
+ -  Period period = Period.of(0, 0, 0); sẽ in ra: P0D, nếu nhập đủ ngày tháng năm sẽ in ra: PnYtMnD, khi
+ - LocalDate.atDate(xxx).atYear(-10000) thì in ra year có thể là âm ok. ko văng Ex
+ - LocalDate/Time using parse() or of() always create new object, so compare then return false.
+ - LocalDate.parse("2018-1-01");  => throw ex, luôn mặc định là yyyy-MM-dd, nếu muốn parse custom thì  phải LocalDate.parse("2018-1-01", customDateTimeFormatter);
+ -
+
  - Khi dùng StringBuilder.tóString() thì sẽ trả ra 1 string với constructor: new String() nên luôn là 1 string mới, có địa chỉ mới.
  - StringBuilder không thể append null là tham số. compiler erorr
- - Khi khai báo new StringBuilder(100); -> khai báo size initialed, khi get sb.length = 0, sb.tóString.length = 0
+ - Khi khai báo new StringBuilder(100);
+ -> khai báo size initialed, khi get sb.length = 0, sb.tóString.length = 0
  - khi dùng;  kết hợp với localDate.at(LocalTime.MAX) -> in ra ngàyTgio.999999999,  nếu chỉ là localDate: yyyy-mm-dd, nếu chỉ là localTime: hh:mm:ss nếu khai ss trong constructor
  LocalTime.MIN = LocalTime.MIDNIGHT = 00:00, LocalTime.NOON = 12:00
+ - Khi dùng date.minusYears(-5)  => năm + 5 năm
+- String
+final String fName = "James"; // do là final nên được resolve at compile time -> put to string pool
+String lName = "Gosling";  // không là fin, nhưng là chuỗi hằng nên được đưa vào string pool, resolve at runtime
+String name1 = fName + lName; // vì lName được resolve at runtime nên name1 không được đưa vào string pool, réolve at runtime, tạo ra 1 đối tượng mới.
+String name2 = fName + "Gosling"; // fName là final, thêm chuỗi hằng => resolve at compileTime, đưa và string pool tên s1
+String name3 = "James" + "Gosling"; // 2 chuỗi hằng -> resolve at compileTime, ktra trong string pool đã thấy có s1 có cùngGT, nên lấy dùng luôn
+System.out.println(name1 == name2); // 1 runtime ko có trong string pool, 1 compileTime có ở string pool => false
+System.out.println(name2 == name3); // cả 2 đều compiletime, đều refer by string pool -> trùng địa chỉ => true

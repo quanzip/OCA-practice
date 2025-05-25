@@ -25,5 +25,24 @@ public class TestDate {
 
         System.out.println("quan " + (10 !=5)); // yêu cầu ()
         System.out.println("Toan " + 10 * 5); // có phép toán ưu tiên, ko cần ()
+
+        StringBuilder stringBuilder = new StringBuilder();
+//        stringBuilder.append(null); // errror Lỗi vì append nhận string hoặc stringBuilder, cả 2 đều đồng cấp là con của charsequencejava
+//        , nên java k biết lấy method nào
+
+        m1(null);// ok vì string < Charsequence < object do vì QH cha con như vậy nên java sẽ lấy được cấp thấp nhất để áp dụng
+        // => string, nếu ko có string , sẽ lấy Charsequence
+    }
+
+    static void m1(CharSequence s) {
+        System.out.println("CharSequence");
+    }
+
+    static void m11(String s) {
+        System.out.println("String");
+    }
+
+    static void m1(Object s) {
+        System.out.println("Object");
     }
 }
