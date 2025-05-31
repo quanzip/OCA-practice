@@ -6,15 +6,31 @@
  - Khi sử dụng object.equal()  thì 2 object phải cùng loại nhau. nếu ko mặc định là false.
  - Không thể vừa lặp vừa xóa phần tử với cùng 1 reference of list, muốn xóa trong khi lặp phải dùng iterator, nó sẽ cập nhật size của list khi chúng ta gọi xóa
  - Khi dùng api ArrayList.clone(); thi sẽ trả ra 1 Líst nhưng các phần tử  của list vẫn tham chiếu tới các phần tử ở list gốc. nếu hay đổi data của phần tử list nào thì list khác cũng bị thay đổi, nếu chỉ remove phần tử ở list nào thì list khác ko đổi.
- - list.remove(Object) return boolean
+ - list.remove(Object) return boolean, vi la object nen co the la bat ky gi
  - Líst.remove(index) return Object, so can not put it in IF
+ List<Integer> list = new ArrayList<>();
+          list.add(110);
+          list.add(new Integer(110));
+          list.add(110); // vì nằm trong khoảng -128-127 nên sẽ lấy trong memory giá trị này đã lưu trước
+          list.removeIf(i -> i == 110);  // i là wrapper typeVì 1 vế là 110 nên java sẽ extract int value of wrapper element để so sánh chứ ko phải so sánh với new Integer(110) nên tất cả các pt matched
+foreach: dryFruits.remove(dryFruit);  //Lỗi ConcurrentModificationException, Để vừa lặp vừa xóa, có thể dùng for(i = list.size(),i --)  hoặc lặp như bình thường, nhưng đến lúc xóa phải giảm i--
 
  - LocalDate date = LocalDate.of(2020, 9, 31);   Tháng 9 chỉ có 30 ngày, compile ok, run throw Ex
  -  Period period = Period.of(0, 0, 0); sẽ in ra: P0D, nếu nhập đủ ngày tháng năm sẽ in ra: PnYtMnD, khi
+ Period period = Period.parse("p-30000y");   Giam di 30000 nam
  - LocalDate.atDate(xxx).atYear(-10000) thì in ra year có thể là âm ok. ko văng Ex
  - LocalDate/Time using parse() or of() always create new object, so compare then return false.
  - LocalDate.parse("2018-1-01");  => throw ex, luôn mặc định là yyyy-MM-dd, nếu muốn parse custom thì  phải LocalDate.parse("2018-1-01", customDateTimeFormatter);
- -
+ -  LocalDate obj = new LocalDate(2020, 2, 14); // compile eror , no constructor
+ LocalDate date1 = LocalDate.parse("1947-08-15", DateTimeFormatter.ISO_DATE);
+         LocalDate date2 = LocalDate.parse("1947-08-15",
+                 DateTimeFormatter.ISO_LOCAL_DATE);
+         LocalDate date3 = LocalDate.of(1947, 8, 15);
+         System.out.println(date1.equals(date2)); // cả 3 in ra giống nhau, so sánh  = true
+         System.out.println(date2.isEqual(date3)); // so sánh  = true
+date.getMonth() => in hoa: MARCH
+LocalTime obj = LocalTime.now();
+        System.out.println(obj.getHour());// Tinh voi local time => 24h
 
  - Khi dùng StringBuilder.tóString() thì sẽ trả ra 1 string với constructor: new String() nên luôn là 1 string mới, có địa chỉ mới.
  - StringBuilder không thể append null là tham số. compiler erorr
@@ -31,3 +47,16 @@ String name2 = fName + "Gosling"; // fName là final, thêm chuỗi hằng => re
 String name3 = "James" + "Gosling"; // 2 chuỗi hằng -> resolve at compileTime, ktra trong string pool đã thấy có s1 có cùngGT, nên lấy dùng luôn
 System.out.println(name1 == name2); // 1 runtime ko có trong string pool, 1 compileTime có ở string pool => false
 System.out.println(name2 == name3); // cả 2 đều compiletime, đều refer by string pool -> trùng địa chỉ => true
+ strings.add(1, ""); Nếu trước đó chưa add ele tại 0 thì throw IndexOutOfBounfEx
+ final String s = "{";
+ final int i = 3;
+ final Integer tr = 4; // non-constant var, evaluate at runtime, create new Object at heap because not primative type neither string type
+
+String fs = s + i; // compile time  evaluate, put in pool.
+String ff = i + tr //  run-time evaluate
+ System.out.println("String--------");
+        String javaworld = "JavaWorld";
+        String java = "Java";
+        String world = "World";  // 3 object này được evalueate compile time, được đưa vào trong pool
+        java += world; // phép cộng này từ các biến ko phải final, k phải string constant => runtime. tạo object ở heap mới là nó
+        System.out.println(java == javaworld); // false do 1 ở trong pool, 1 ở heap, == là so sánh địa chỉ tham chiếu.

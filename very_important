@@ -2,7 +2,45 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+ extractInt(2.7);
+//        extractInt(Integer.valueOf(23)); // faile vì chỉ nhận wrapper type và primitive của chính nó.: Double và double
+//        extractInt(2); // Error vì param func là wrapper type thì chỉ nhận wrapper type hoặc primative của kiểu đó
+        test1((byte)2); // ok vì là param func là primitive type nên sẽ nhận kiểu wrapper + primitive từ nó về trươcsok   byte < double => ok
+        test1('d'); // vì char < double nên  ok
+
+        test((byte)2); // ok vì là primitive type nên sẽ nhận Short, short và các kiểu primitive < short
+//        test(3);  // eror, cần cast vì int > short
+
+    }
+    private static void extractInt(Double obj) {
+        System.out.println(obj.intValue());
+    }
+
+    private static void test1(double obj) {
+        ;
+    }
+    private static void test(short obj) {
+        ;
+    }
+
+System.out.println("Operator------ Đối với float/double");
+        System.out.println( 23 / 2.0 );   // chia chính xác, chia hết, có đủ thập phân,  = 11.5
+        System.out.println( 23 % 2.0 );  // chia lấy dự như bình thuơng, ko có thập phân  = 1.0
+
+Which one of these top level classes cannot be sub-classed?   => cannot be sub-classed: không thể được kế thừa bởi class khác.
+
 Java.lang.Error la Exception ke thua Throwable => checked Ex.
+
+List<Exception>numbers = new ArrayList<IOException>(); errror, Nếu khai rõ thì phải giống nhau hoặc để trống.
+
+List<Integer>: remove(Object) return true/false, remove(int: index) return Object
+list.set(index, Object).
+strings.add(1, ""); Nếu trước đó chưa add ele tại 0 thì throw IndexOutOfBounfEx
+List<Integer> list = new ArrayList<>();
+         list.add(110);
+         list.add(new Integer(110));
+         list.add(110); // vì nằm trong khoảng -128-127 nên sẽ lấy trong memory giá trị này đã lưu trước
+         list.removeIf(i -> i == 110);  // i là wrapper typeVì 1 vế là 110 nên java sẽ extract int value of wrapper element để so sánh chứ ko phải so sánh với new Integer(110) nên tất cả các pt matched
 
 Student() {
          Student("James", 25); // eror: khi gọi constructor khác, phải dùng this(...)
@@ -12,6 +50,15 @@ Student() {
      this.name = name;
      this.age = age;
  }
+
+ Boolean bs[] = new Boolean[1];
+         if (bs[0]) { // nullPointerEx
+ Boolean b = new Boolean("tRue"); // true
+        Boolean b1 = new Boolean("ok"); // false
+
+class D {
+static Double d;
+    static Integer i = d.intValue(); => throw ExceptionInInitializer
 
 Khi dùng list kiểu <Integer,Short,Byte,Char,Boolean> thì việc add(12 hoặc 'c') => auto Bõxing thì giá trị từ -128 .. 127 sẽ được lưu vào trong memory. lớn hơn sẽ không lưu
  khi lưu vào như vậy thì lần tới add giá trị trong khoảng đó sẽ tìm trong memory trước. nếu có rồi thì lấy ra dùng. ko tạo mới, nếu ngoài khoảng. luôn tạo mới trong memory
@@ -65,7 +112,7 @@ Class Exception la checked Ex, Nên khi throw new Exception thì phải try-catc
 
 //  vì finally luôn được chạy nên:  nếu trong try có return nhưng finaly không có return thì return vẫn chạy nhưng trả kết quả là từ return của try
             // Nếu try/catch/finally đều có return thì method sẽ lấy giá trị return của finally
-Chỉ có thể khai khối trycatch của checked exception khi mà code trong try có nguy cơ văng checkedExcoeion. nếu ko, ko được khai  try catch(Checked ex)
+Chỉ có thể khai khối trycatch của checked exception hoặc subCheckedEX của Ex có nguy cơ văng khi mà code trong try có nguy cơ văng checkedExcoeion. nếu ko, ko được khai  try catch(Checked ex)
 Còn ở method signature thì có thể khai throws checkedEx/unchecked ex mà trong body không cần văng ra gì.
 
 class PortConnector {
@@ -170,6 +217,9 @@ Nhưng nếu D là 1 normal class (non static): Thì cần khởi tạo Class X 
         primative type sẽ được định giá trị tại compile time nếu chúng được khai báo final.
         * */
 
+int a = 10;
+--a * a++ + a-- - --a: --a được tính trước mới ghép vào biểu thức, a++ được lấy giá trj hiện tại trước để ghép vào biểu thức sau mới + 1
+=> 9 * 9 + 10 - 8
  for (int m = 0; m++<10 ;){   =>> m sẽ so sánh với 10 xong rồi mới cộng thêm 1
 
  SIC, thứ tự chjay của các thành phần trong 1 class, 3 khối static, instance và constructor sẽ được tự động thực thi sau mỗi lần 1 object được khởi tạo
