@@ -2,6 +2,34 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+Để chạy lệnh cmd run java: java tênclass, nếu đang đứng ở folder ngoài, Thì phải lấy cả package
+java -cp Quiz\Sec07\classes\ com.udayan.test.Exam
+
+ -------Double:
+ private static void add(double d1, double d2) {
+         System.out.println("double version: " + (d1 + d2));
+     }
+
+     private static void add(Double d1, Double d2) {
+         System.out.println("Double version: " + (d1 + d2));
+     }
+
+     public static void main(String[] args) {
+         add(1.8, new Double(10.0));
+     }  ==> Error because both method matched
+
+
+  new ArrayList<>(){{add(i[0]);}}; // Error. Phải chỉ rõ kiểu nếu ko có reference type
+
+ final boolean flag ;
+         flag = false;  // compile-time nên dùng trong while ok
+while(flag) {} // ok
+
+Để ý tên biến trong lambda không được trùng với tên biến ở ngoài => compilation Error
+
+Test t = null;
+t.staticMethod()  // OK
+
  extractInt(2.7);
 //        extractInt(Integer.valueOf(23)); // faile vì chỉ nhận wrapper type và primitive của chính nó.: Double và double
 //        extractInt(2); // Error vì param func là wrapper type thì chỉ nhận wrapper type hoặc primative của kiểu đó
@@ -29,7 +57,7 @@ System.out.println("Operator------ Đối với float/double");
 
 Which one of these top level classes cannot be sub-classed?   => cannot be sub-classed: không thể được kế thừa bởi class khác.
 
-Java.lang.Error la Exception ke thua Throwable => checked Ex.
+Java.lang.Error ke thua Throwable => checked Ex.
 
 List<Exception>numbers = new ArrayList<IOException>(); errror, Nếu khai rõ thì phải giống nhau hoặc để trống.
 
@@ -52,7 +80,7 @@ Student() {
  }
 
  Boolean bs[] = new Boolean[1];
-         if (bs[0]) { // nullPointerEx
+         if (bs[0]) { // nullPointerEx, bs[0] ddang laf null, no problems, but if(null) cause Error
  Boolean b = new Boolean("tRue"); // true
         Boolean b1 = new Boolean("ok"); // false
 

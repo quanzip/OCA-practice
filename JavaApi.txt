@@ -15,6 +15,7 @@
           list.removeIf(i -> i == 110);  // i là wrapper typeVì 1 vế là 110 nên java sẽ extract int value of wrapper element để so sánh chứ ko phải so sánh với new Integer(110) nên tất cả các pt matched
 foreach: dryFruits.remove(dryFruit);  //Lỗi ConcurrentModificationException, Để vừa lặp vừa xóa, có thể dùng for(i = list.size(),i --)  hoặc lặp như bình thường, nhưng đến lúc xóa phải giảm i--
 
+
  - LocalDate date = LocalDate.of(2020, 9, 31);   Tháng 9 chỉ có 30 ngày, compile ok, run throw Ex
  -  Period period = Period.of(0, 0, 0); sẽ in ra: P0D, nếu nhập đủ ngày tháng năm sẽ in ra: PnYtMnD, khi
  Period period = Period.parse("p-30000y");   Giam di 30000 nam
@@ -31,6 +32,10 @@ foreach: dryFruits.remove(dryFruit);  //Lỗi ConcurrentModificationException, �
 date.getMonth() => in hoa: MARCH
 LocalTime obj = LocalTime.now();
         System.out.println(obj.getHour());// Tinh voi local time => 24h
+Period period = Period.of(0, 1000, 0);  => P1000M
+Period period = Period.of(0, 0, 0);  => P0D
+Period period = Period.of(1, 0, 0);  => P1Y
+DateTimeFometter o trong package: java.time.format
 
  - Khi dùng StringBuilder.tóString() thì sẽ trả ra 1 string với constructor: new String() nên luôn là 1 string mới, có địa chỉ mới.
  - StringBuilder không thể append null là tham số. compiler erorr
@@ -39,6 +44,8 @@ LocalTime obj = LocalTime.now();
  - khi dùng;  kết hợp với localDate.at(LocalTime.MAX) -> in ra ngàyTgio.999999999,  nếu chỉ là localDate: yyyy-mm-dd, nếu chỉ là localTime: hh:mm:ss nếu khai ss trong constructor
  LocalTime.MIN = LocalTime.MIDNIGHT = 00:00, LocalTime.NOON = 12:00
  - Khi dùng date.minusYears(-5)  => năm + 5 năm
+
+
 - String
 final String fName = "James"; // do là final nên được resolve at compile time -> put to string pool
 String lName = "Gosling";  // không là fin, nhưng là chuỗi hằng nên được đưa vào string pool, resolve at runtime
@@ -60,3 +67,24 @@ String ff = i + tr //  run-time evaluate
         String world = "World";  // 3 object này được evalueate compile time, được đưa vào trong pool
         java += world; // phép cộng này từ các biến ko phải final, k phải string constant => runtime. tạo object ở heap mới là nó
         System.out.println(java == javaworld); // false do 1 ở trong pool, 1 ở heap, == là so sánh địa chỉ tham chiếu.
+
+------- boolean:
+ Boolean b = new Boolean(null/asjkd/false/FalSe); b is false, compile ok
+ final boolean flag ;
+         flag = false;
+         while(flag) { // ok
+             System.out.println("Good Morning!");
+         }
+
+ -------Double:
+ private static void add(double d1, double d2) {
+         System.out.println("double version: " + (d1 + d2));
+     }
+
+     private static void add(Double d1, Double d2) {
+         System.out.println("Double version: " + (d1 + d2));
+     }
+
+     public static void main(String[] args) {
+         add(1.8, new Double(10.0));
+     }  ==> Error because both method matched
