@@ -456,6 +456,17 @@ Khi khai báo String s = "quan"; String g = "quan", if (s == g) => true, String 
  * Như vậy sau toàn bộ qúa trình hàm main sẽ in ra: 0 aFunc 4 10
 * */
 
+khi 2 class A kế thừa b,
+- nếu B không có cons => a cũng ko cần
+- nếu B có cons no-arg, a ko cần
+- Nếu b có cons có arg, a cần khai cons và gọi tới
+- Nếu B có cả  cons no-arg và cons  arg thì a ko cần
+
+- nếu B có cons no-arg nhưng signature throws Ex -> thì a cần khai báo cons, ko cần gọi super() nhưng cần khai ex ở signature, ex phải >= ex cha
+- Nếu B có cons no-arg và signature kèm throws Ex, lại có cons ảrg nhưng signature ko throws gì ->
+    + Nếu a khai cons mà ko chỉ định super nào, Jvm mặc đạnh a đang gọi cons no-arg -> cons của a cần throws ex ở signature,
+    + Nếu a khai cons mà chỉ định gọi vào super ko thows gì ở signature của B, thì cons đó của a không cần throws gì ở signature
+
 
 class A {
     int i = 10;
