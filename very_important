@@ -5,6 +5,80 @@ Chỉ class con mới có thể là static class. và nó cũng có thể là pr
 Để chạy lệnh cmd run java: java tênclass, nếu đang đứng ở folder ngoài, Thì phải lấy cả package
 java -cp Quiz\Sec07\classes\ com.udayan.test.Exam
 
+
+ System.out.println((flag = true) | (flag = false) || (flag = true));  Kết hợp với nhau được
+
+-- Không thể dùng ref của class con để gọi tới static method của interface cha, chỉ có thể dùng ref của cha, nó thuộc về cha.
+- - Có thể dùng ref của con để sd trực tiếp final var của interface cha.
+interface Shrinkable {
+    int t = 10;
+    public static void shrinkPercentage() {
+        System.out.println("80%");
+    }
+}
+//AntMan.java
+ class AntMan implements Shrinkable { }
+//Test.java
+ class Test2 {
+    public static void main(String[] args) {
+//        AntMan.shrinkPercentage(); // failed, Không thể gọi trực tiếp static method của cha thông qua tên class con
+        System.out.println(AntMan.t); // Gọi thuộc tính thì ok
+    }
+}
+
+
+//        int x = ____0;  // eror
+        int y = 1____50;
+//        int z = 50____;   // eror
+        float f = 123.76_86f;
+//        float f = 123.76_86_f;    // eror
+        double d = 1__2_3_4;
+        // -> Không được sử dụng _ ở đầu hoặc cuối, xung quanh dấu chấm, xung quanh ké hiệu kiểu (f, d, l)
+
+
+ List<Integer> list = new ArrayList<>();
+        byte b = 10;
+        long b1 = 10;
+        int t =10;
+        list.add(b); //Error
+        list.add(b1); //Error
+        list.add(t); // ok
+// Khai kiểu gi phải add đúng kiểu đó, nếu khai wrapper thì chấp nhận wrapper và primitice  , tương tự với định ghĩa param trong function
+
+
+// Class Error khoong cần try-catch, không cần khai ở clause
+
+int  i = 10;  // 10 là constant => jvm biết rõ GT này nó hợp lệ để gán cho i hay ko
+short s = i;   // i ko phải final -> not constant => compiler ko biết có thể được gán cho s hay ko -> error
+nếu khai i là final, thì Jvm biết rõ giá trị i khi gán cho s và báo KQ luôn là có hợp lệ hay ko, nếu trong khoảng của short => ok
+tương đương với short s = 10 -> ok
+=> khi khai final cho biến là để cho các việc sử dụng sau này biết rõ giá trị đó là constant.
+
+
+class Parent {
+     int var = 1000; // Line n1
+     int dd = 293;
+
+}
+
+class Child extends Parent {
+    private int var = 2000; // Line n2
+}
+ abstract class Animal {
+    void move() {
+        System.out.println("ANIMAL MOVING");
+
+        Child child = new Child();
+        child.var = 93;  // error vi trong Child cũng khai trùng tên var, nên ở đây chỉ nhìn thấy var của child, nhưng nó đang là private, nếu không là private thì mới có thể truy cập
+        child.dd = 1// ok
+    }
+}
+
+ ILogger[] loggers = new ILogger[2]; //Line n1
+        for (ILogger logger : loggers)
+            logger.log(); //Line n2   // NullPE
+
+
  -------Double:
  private static void add(double d1, double d2) {
          System.out.println("double version: " + (d1 + d2));
@@ -110,6 +184,48 @@ Exception E= new Exception();, sout(E) => java.Exception: E.message
  * - Checked exception phương thức @Override ở class con không thể throw nhiều và exception mở hơn so với phương thức gốc ở class cha.
   - Chỉ có thể throw nhiều hơn nếu pt gốc và pt override throw exception là cả cha và con (con là ko cần thiết) thì ở phương thức gốc có thể bỏ bớt exception của con, có
   vd nếu ở pt gốc đang throw cả 2 là IOException và fileNotfoundExcetion  thì có thể bỏ fileNotFoundEx, nhưng ở override pt vẫn có thể giữ, nhưng lại không thể throw thêm như Exception vì ở class gốc ko có
+  -- private static void m1(String m) throws SQLException{
+          try {
+              if (m.isEmpty()) {
+                  throw new SQLException();
+              }
+          } catch (RuntimeException e) {
+              throw e; // Jvm biết đây sẽ chỉ là Sql ex chứ ko phải Ex nên trên method signature chỉ cần khai sqlEX
+              // nếu trong try throw thêm loại exception khác thì catch cũng sẽ phải khai thêm đó
+              // nhưng hiện tại đang để là exception EXX nên đã cover được hết,
+              // nhưng jvm vẫn biết rõ nếu re-throw EXX trong catch thì sẽ là throw các exception trong try là gồm các excpeion nhỏ, nên method signature chỉ cần khai các ex nhỏ
+          }
+      }
+
+      private static void m2(String m) throws SQLException, FileNotFoundException {  // có thể thay thế bừng exception thì chỉ cần 1
+          try {
+              if (m.isEmpty()) {
+                  throw new SQLException();
+              } else throw new FileNotFoundException();
+          } catch (RuntimeException e) {
+              throw e;    //  khi đã khai trên signature thì việc xử lý ở đây ko cần nữa
+          }
+      }
+
+      private static void m3(String m) throws FileNotFoundException {  // có thể thay thế bừng exception thì chỉ cần 1
+          try {
+              if (m.isEmpty()) {
+                  throw new SQLException();
+              } else throw new FileNotFoundException();
+          } catch (SQLException e) {
+              // ở đây chỉ bắt sqlEx vẫn thiếu FileNotFoundEx nhưng vẫn ok vì đã khai fileNotFoundEx trên signature để văng ra ngoài, bên ngoài sẽ xử lý.
+              // nếu trên method signature không khai FileNotfoundẼx thì sẽ phải khai báo fileNotFoundEx ở đây để handle, có thể để SqlEx | FileNotFoundEx ex
+              // đây là chia sẻ việc xử lý ex, 1 cho catch, 1 cho method signature
+          }
+      }
+try {
+    throw new SQLException();
+} catch (Exception e) {
+    e = null; //Line 10  Khi đã gán lại = null, Jvm biết nó bản chất ko còn là sql Ex nữa, mà là kiểu ref: Exception,phải
+     nên lúc này nếu re-throw thì sẽ thêm try-catch để catch Ex này hoặc khai ở method signature. cũng giống như khi Object t = null. t thuộc về object type
+    throw e; //Line 11
+}
+
 
         int[] x = new int[0]; // ok
         int[][] b = null;  // ok

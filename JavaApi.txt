@@ -14,7 +14,16 @@
           list.add(110); // vì nằm trong khoảng -128-127 nên sẽ lấy trong memory giá trị này đã lưu trước
           list.removeIf(i -> i == 110);  // i là wrapper typeVì 1 vế là 110 nên java sẽ extract int value of wrapper element để so sánh chứ ko phải so sánh với new Integer(110) nên tất cả các pt matched
 foreach: dryFruits.remove(dryFruit);  //Lỗi ConcurrentModificationException, Để vừa lặp vừa xóa, có thể dùng for(i = list.size(),i --)  hoặc lặp như bình thường, nhưng đến lúc xóa phải giảm i--
-
+UnaryOperator unaryOperator = b -> String.valueOf(b);
+list.replaceAll(unaryOperator); // thay thế tấy cả các phần tử trong mảng thành 1 gias tri moi, cuxng kieu vs kieu cu
+ List<Integer> list = new ArrayList<>();
+        byte b = 10;
+        long b1 = 10;
+        int t =10;
+        list.add(b); //Error
+        list.add(b1); //Error
+        list.add(t); // ok
+// Khai kiểu gi phải add đúng kiểu đó, nếu khai wrapper thì chấp nhận wrapper và primitice  , tương tự với định ghĩa param trong function
 
  - LocalDate date = LocalDate.of(2020, 9, 31);   Tháng 9 chỉ có 30 ngày, compile ok, run throw Ex
  -  Period period = Period.of(0, 0, 0); sẽ in ra: P0D, nếu nhập đủ ngày tháng năm sẽ in ra: PnYtMnD, khi
@@ -67,6 +76,15 @@ String ff = i + tr //  run-time evaluate
         String world = "World";  // 3 object này được evalueate compile time, được đưa vào trong pool
         java += world; // phép cộng này từ các biến ko phải final, k phải string constant => runtime. tạo object ở heap mới là nó
         System.out.println(java == javaworld); // false do 1 ở trong pool, 1 ở heap, == là so sánh địa chỉ tham chiếu.
+//        t.replace(string/char search, string/char replacement); sẽ replace tất cả các đoạn trùng khớp, muốn replace 1 đoạn đầu tiên thì dùng replace first
+String text = null;
+        text = text + text; //Line n1
+        System.out.println(text);   // ok : nullnull
+boolean flag1 = "Java" == "Java".replace('J', 'J'); //Line n1
+        boolean flag2 = "Java" == "Java".replace("J", "J"); //Line n2
+        System.out.println(flag1 + "dsf+ "+ flag2); // true / false
+Khi usering char, nếu chuối ko đổi, java trả chuỗi gốc, khi using "" charsequence, java luên trả chuỗi mới trong heap
+
 
 ------- boolean:
  Boolean b = new Boolean(null/asjkd/false/FalSe); b is false, compile ok
