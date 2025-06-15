@@ -24,6 +24,8 @@ list.replaceAll(unaryOperator); // thay thế tấy cả các phần tử trong 
         list.add(b1); //Error
         list.add(t); // ok
 // Khai kiểu gi phải add đúng kiểu đó, nếu khai wrapper thì chấp nhận wrapper và primitice  , tương tự với định ghĩa param trong function
+        // => Sau khi đã subList thì chỉ nên thay đổi ở subList, không nên dùng list chính
+//          => Bất kể thay đổi gì ở subList đều được ánh xạ vào list chính: Thêm, sửa xóa, sắp xếp, primative lẫn Objetc
 
  - LocalDate date = LocalDate.of(2020, 9, 31);   Tháng 9 chỉ có 30 ngày, compile ok, run throw Ex
  -  Period period = Period.of(0, 0, 0); sẽ in ra: P0D, nếu nhập đủ ngày tháng năm sẽ in ra: PnYtMnD, khi
@@ -84,7 +86,11 @@ boolean flag1 = "Java" == "Java".replace('J', 'J'); //Line n1
         boolean flag2 = "Java" == "Java".replace("J", "J"); //Line n2
         System.out.println(flag1 + "dsf+ "+ flag2); // true / false
 Khi usering char, nếu chuối ko đổi, java trả chuỗi gốc, khi using "" charsequence, java luên trả chuỗi mới trong heap
-
+String q = "quan";
+//        System.out.println(q.substring(1,10)); StringIndexOutOFBoundEx, ko the substring with endIndex lager than length
+StringBuilder sb = new StringBuilder().replace(1,2,"234"); // Pt replace luon yc 3 tham so
+System.out.printf(Only String)
+System.out.println(all) = System.out.print()
 
 ------- boolean:
  Boolean b = new Boolean(null/asjkd/false/FalSe); b is false, compile ok

@@ -5,8 +5,22 @@ Chỉ class con mới có thể là static class. và nó cũng có thể là pr
 Để chạy lệnh cmd run java: java tênclass, nếu đang đứng ở folder ngoài, Thì phải lấy cả package
 java -cp Quiz\Sec07\classes\ com.udayan.test.Exam
 
+1 var cua base class gán cho null, vẫn có thể ép kiểu var đó sang children type: Base b = null, Child c = (Child) b;  // compile ok, run ok, có thể dùng c để gọi func,var static ok
 
- System.out.println((flag = true) | (flag = false) || (flag = true));  Kết hợp với nhau được
+   // => Sau khi đã subList thì chỉ nên thay đổi ở subList, không nên dùng list chính
+//          => Bất kể thay đổi gì ở subList đều được ánh xạ vào list chính: Thêm, sửa xóa, sắp xếp, primative lẫn Objetc
+
+Trong phương thức main(arr), arr là mảng cố định size, không thể tự tăng thêm Nếu ko được gán lại,
+cho nên nếu chạy hàm main với 1 pt, thì trong body chỉ được truy cập 1 pt đó, ko thể gán thêm pt cho index tiếp theo.
+Nếu hạy với 0 pt, thì ko thể truy cập arg[0] => arrayIndexOutOfBoundEx
+
+ System.out.println((flag = true) | (flag = false) || (flag = true));  Kết hợp với nhau được, bitwise | có độ ưu tiên cao hơn nên sẽ được gom nhóm với nhau
+ => ((flag = true) | (flag = false)) || (flag = true), Nên nhớ giá trị nào gán ở đâu thì sẽ mang giá trị được gán, các chỗ khác đã gán rồi data không thay đổi.
+ => ((true | false) || (flag = true)),
+ => (true || (flag = true), => true
+ Nhưng cuối cùng giá trị flag vẫn bằng false do bitwise | chạy cả 2 phía, (flag = false)
+
+ throw null; // compile ok, run throw NPE
 
 -- Không thể dùng ref của class con để gọi tới static method của interface cha, chỉ có thể dùng ref của cha, nó thuộc về cha.
 - - Có thể dùng ref của con để sd trực tiếp final var của interface cha.
