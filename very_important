@@ -30,6 +30,10 @@ interface Shrinkable {
         System.out.println("80%");
     }
 }
+
+Enum co the ke thua duy nhat la interface
+ // neu da khai abstract method trong enum haoc ke thua interface co abstract method thi tat ca cac enum phai implement hcung
+
 //AntMan.java
  class AntMan implements Shrinkable { }
 //Test.java
@@ -39,7 +43,6 @@ interface Shrinkable {
         System.out.println(AntMan.t); // Gọi thuộc tính thì ok
     }
 }
-
 
 //        int x = ____0;  // eror
         int y = 1____50;
@@ -83,7 +86,7 @@ class Child extends Parent {
         System.out.println("ANIMAL MOVING");
 
         Child child = new Child();
-        child.var = 93;  // error vi trong Child cũng khai trùng tên var, nên ở đây chỉ nhìn thấy var của child, nhưng nó đang là private, nếu không là private thì mới có thể truy cập
+        child.var = 93;  // error vi trong Child cũng khai trùng tên var, nên ở đây chỉ nhìn thấy var của child, ko còn var của parent nữa, nhưng nó đang là private, nếu không là private thì mới có thể truy cập
         child.dd = 1// ok
     }
 }
@@ -105,12 +108,12 @@ class Child extends Parent {
      public static void main(String[] args) {
          add(1.8, new Double(10.0));
      }  ==> Error because both method matched
-
+Có Trên 1 tham số thì ko xét độ ưu tiên của kiểu nữa.
 
   new ArrayList<>(){{add(i[0]);}}; // Error. Phải chỉ rõ kiểu nếu ko có reference type
 
  final boolean flag ;
-         flag = false;  // compile-time nên dùng trong while ok
+         flag = false;  // run-time nên dùng trong while ok
 while(flag) {} // ok
 
 Để ý tên biến trong lambda không được trùng với tên biến ở ngoài => compilation Error
@@ -283,7 +286,9 @@ khi mà class chỉ có các kiểu primative hoặc các kiểu wrapper của c
   int []i = {1,2,2}; i.getClass().isArray() => true; cũng đúng với các kiểu khác như Object...
 
 // khi đã khai thuộc tính final thì phải gán giá trị ngay hoặc
-     // phải gán trong constructor hoặc trong static block
+     // phải gán trong constructor hoặc trong instance/static block
+Nếu biến đó là static thì phải khai báo luôn hoặc trong static block
+Nếu biến đó là non-static thì phải khai luôn hoặc trong constructor hoặc instance block
 
 Thuộc tính protected dùng cho class con(ở bất kỳ đâu) hoặc trong cùng package (k được kể cả trong package con.)
 Implement chuẩn đóng gói sẽ là các thuộc tính phải để private, các PT get set phải để public hoặc protected
@@ -314,7 +319,7 @@ String dd = "quan";
 
  interface sẽ extends interface
  abstract class sẽ implements interface (không được extends, và không cần implements abstract methods.)
-Abstract class/ class normal khai static method, static method có thể được gọi bằng instanceic --
+Abstract class/ class normal khai static method, static method có thể được gọi bằng instanceic + reference
 Interface khai static method, thì static method này chỉ có thể được gọi bằng refernce (InterfaceName.methodName)
 => A extends ABSTRACT CLASS implement INTERFACE thì A là thể hiện (instance của abstract class), và A chỉ là triển khai của Interface chứ A không phải là thể hiện (instance) của interface
 => Nếu abs class C và interface D cùng có 1 phương thức static S, thì khi khai íntance A a = new A,  a.S là sẽ gọi phương thức của abs class C,
@@ -351,7 +356,7 @@ chứ ko gọi S của inteface D bởi vì class có thể gọi phương thứ
 
 logic operation (&&, ||)  ###  bitwise operation (& | ^):
 logic: break circuit when 1 side is nok while bitwise will run throughout business even 1 side is not ok
-// new knowledge: XOR ~ ^: require only one side to be true => true; if both is false or both is true => false;
+// new knowledge: XOR ~ ^: require 2 sides are opposite=> true; if both is false or both is true => false;
         // XOR là toán tử yêu cầu 1 trong 2 vế phải là true thì KQ trả ra sẽ là true, còn các Th khác sẽ là false;
         // vd 1 true 1 false -> true, 2 true -> false, 2 false -> fasle;
         boolean r = 1 > 2 ^ 2 > 1; //  false ^ true => true;
@@ -428,7 +433,7 @@ Nếu 1 biến được khai báo sau đó sử dụng, sau đó được gán l
 -------------- enum
 Enum
 Enum có thể sử dụng == or equals() để so sánh
-Không thể kế thừa bất kỳ thứ gì(interface, class, abstract class), có thể có constructor,  fields, METHODS.
+Không thể kế thừa bất kỳ thứ gì ngoai interface(class, abstract class), có thể có constructor,  fields, METHODS.
 Constructor sẽ ngầm định là private, không được chuyển sang public | protected. do vậy chỉ có thẻ gọi constructor của nó bên trong chính nó. Cũng do đó không thể kế thừa enum, không thể khai báo enum với từ khóa new.
 Các giá trị của enum đưuọc đánh thứ tự, bắt đầu từ 0 ^, Enum là type kế thừa java enum. KHÔNG PHẢI KIỂU PRIVATIVE nên không thể so sánh giá trị với int ie if(enumVar == 4) // error
 
@@ -482,7 +487,7 @@ Interface
 Mặc định biến trong interface luôn là public static final, không thể that đổi được giá trị
 Nếu khai báo phương thức static S và method Default D
 - Static method của interface chỉ có thể gọi qua reference (interfaceName.staticMethod), không thể gọi qua interface instance, còn static của class và abs class có thể được gọi qua reference hoặc instance.
-- Default method có thể gọi qua instace, không thể gọi qua instace,  class triển khai insterface phải khai báo instace để gọi các default method này
+- Default method có thể gọi qua instace, không thể gọi qua ref,  class triển khai insterface phải khai báo instace để gọi các default method này
 => Static method và default method của interface có quy tắc truy cập ngược nhau.
 => Khi A kế thừa abs class B và interface C, B và C đều khai phương thức static S,
 a.S là gọi S của B vì static method S của Class và abs class mới có thể gọi qua instance,  Static method của interface C chỉ cso thể được gọi qua referenceName
@@ -594,7 +599,7 @@ khi 2 class A kế thừa b,
 
 - nếu B có cons no-arg nhưng signature throws Ex -> thì a cần khai báo cons, ko cần gọi super() nhưng cần khai ex ở signature, ex phải >= ex cha
 - Nếu B có cons no-arg và signature kèm throws Ex, lại có cons ảrg nhưng signature ko throws gì ->
-    + Nếu a khai cons mà ko chỉ định super nào, Jvm mặc đạnh a đang gọi cons no-arg -> cons của a cần throws ex ở signature,
+    + Nếu a khai cons mà ko chỉ định super nào, Jvm mặc đạnh a đang gọi cons no-arg -> cons của a cần throws ex ở signature, Không được try-catch lệnh super()  vì lệnh này phải được đặt đầu tiên trong cons, không  thể đứng sau try-catch
     + Nếu a khai cons mà chỉ định gọi vào super ko thows gì ở signature của B, thì cons đó của a không cần throws gì ở signature
 
 
@@ -664,8 +669,8 @@ class Sub extends Super{
     static { System.out.print("In Sub");  // AAA   static block chỉ được thực thi khi mà 1 trong các sự kiện bên trên xuất hiện }
         {
             System.out.println("Super instance block");
-            // khối instance block chỉ được thực thi khi class được khai báo với keywỏrd NEWnhớ, chi chạy duy nhất 1 lần khi class được load
-            // , còn khối static sẽ được thực thi khi mà class được load vào trong bộ, chạy nhiều lần mỗi khi class Object được khởi tạo
+            // khối static block chỉ được thực thi khi class được khai báo với keywỏrd NEWnhớ, chi chạy duy nhất 1 lần khi class được load
+            // , còn khối instance sẽ được thực thi khi mà class được load vào trong bộ, chạy nhiều lần mỗi khi class Object được khởi tạo
         }
 }
 

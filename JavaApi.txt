@@ -75,7 +75,7 @@ String ff = i + tr //  run-time evaluate
  System.out.println("String--------");
         String javaworld = "JavaWorld";
         String java = "Java";
-        String world = "World";  // 3 object này được evalueate compile time, được đưa vào trong pool
+        String world = "World";  // 3 object này được evalueate run time, được đưa vào trong pool
         java += world; // phép cộng này từ các biến ko phải final, k phải string constant => runtime. tạo object ở heap mới là nó
         System.out.println(java == javaworld); // false do 1 ở trong pool, 1 ở heap, == là so sánh địa chỉ tham chiếu.
 //        t.replace(string/char search, string/char replacement); sẽ replace tất cả các đoạn trùng khớp, muốn replace 1 đoạn đầu tiên thì dùng replace first

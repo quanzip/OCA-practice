@@ -4,6 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SUbLIst {
+    final String newS;
+    final static String name;
+    static {
+        name = "qu";
+    }
+
+    {
+//     newS ="";
+    }
+
+    SUbLIst() {
+        newS = "";
+    }
+
     public static void main(String[] args) throws InterruptedException {
         StringBuilder sb = new StringBuilder("abc").replace(1,2,"234"); // Pt replace luon yc 3 tham so
         List<String> strings = new ArrayList<>();
@@ -61,11 +75,29 @@ public class SUbLIst {
         base1.name = "Long";
         System.out.println(bases);
         System.out.println(subList);
+
+//        final long t = 1; // Tất cả các kiểu > int mà khai final thì được resolve at runtime
+//        byte r = t;
+
+        Integer f=  3;
+        String s = 1 + f.toString();// Neu la 1+ 2 => failed, neu la 1 + f => failed
+
+
+        Base b = new Base();
+        Base b4= new Base();
+//        boolean bb = b != 7; error
+//        System.out.println("0123" != 5); error
+
+
+        System.out.println(VV.name1);
+
+
     }
 }
 
 class Base {
-    String name = "Hello";
+    static String name = "Hello";
+    static String name1 = "Hello";
 
     @Override
     public String toString() {
@@ -73,4 +105,12 @@ class Base {
                 "name='" + name + '\'' +
                 '}';
     }
+
+
+
+}
+
+class  VV extends Base {
+    static String name1 = "Hello";
+
 }
