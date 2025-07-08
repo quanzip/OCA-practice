@@ -2,6 +2,24 @@ Package statement luôn đứng đầu, sau mới đến import statement
 Thông thường khi khai báo class, 1 file chỉ chứa 1 public class ở level vao nhất, hoặc là default (package-private không được khác 2 giá trị này)
 Chỉ class con mới có thể là static class. và nó cũng có thể là private, public,...
 
+Khi kế thừa, ko thể dùng static để kế thừa non-static và ngược lại khi đối với cha không phải là static
+Ngoại lệ: Nếu cha là static thì pt ở con có thể là pt instance/default bởi vì pt ở con lúc nnày chỉ thuọc về instance, ko liên quan tới pt static của cha, chỉ thuọc về ref của cha.
+
+num = 10;
+ if(num++ == num++) {   compile ok, => num++ thì sẽ trả giá trị tại vị trí của nó trước => 10, sau đó bản thân biến sẽ tăng value ngay lúc đó chứ không đợi so sánh xong mới tăng và cũng ko phải tăng sau dấu bằng, mà tăng luôn nhưng trả tại vị trí thì là giá trị chưa tăng
+  tương tự với num++ sau, => if (10 == 11)  false
+
+!!true => ok => true, !true => false
+đối với string, cũng có thể sử dụng string += X
+Nếu pt cha có kiểu trả về là list, ở pt con kế thừa phải là list hoặc các kiểu con của list<X>, Còn kiểu X phải giống Y hệt, ko được khác. => ArrayList ok
+
+Nếu 2 interface cùng có var x = 1, 1 class kế thuừa thì khi gọi var này phải chỉ rõ = InterfaceName.var, còn var khác có thể gọi thẳng varName bằng ref/instance của con mà ko cần interfaceName
+class con có thể dùng className/instance để gọi public static final properties của interface cha,
+
+Cons của runtimeEx là 4: empty, string, throwable Ex và string, throwable ẽx
+
+ Document.super.getType(); // chi  dùng được cho class con của interface, không dùng được cho cháu
+
 Để chạy lệnh cmd run java: java tênclass, nếu đang đứng ở folder ngoài, Thì phải lấy cả package
 java -cp Quiz\Sec07\classes\ com.udayan.test.Exam
 
